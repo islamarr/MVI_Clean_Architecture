@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.move.mvisample.R
+import com.move.mvisample.core.COLUMNS_COUNT
 import com.move.mvisample.core.gone
 import com.move.mvisample.core.visible
 import com.move.mvisample.databinding.MainFragmentBinding
@@ -52,7 +53,7 @@ class MainFragment : BaseFragment<MainFragmentBinding>() {
     private fun initRecyclerView() {
         binding?.list?.apply {  //TODO replace with grid layout
             carsAdapter = CarsAdapter()
-            layoutManager = LinearLayoutManager(requireActivity())
+            layoutManager = GridLayoutManager(requireActivity(), COLUMNS_COUNT)
             adapter = carsAdapter
         }
     }
