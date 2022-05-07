@@ -27,14 +27,6 @@ class GetCarImageUrlUseCase @Inject constructor(private val getCarImagesReposito
                 ) + "?rule=mo-640.jpg"
             )
         }
-        val hImagesUrl = carImages.map {
-            CarImage(
-                "https://" + it.uri.replace(
-                    "m.mobile.de/yams-proxy/",
-                    ""
-                ) + "?rule=mo-1600.jpg"
-            )
-        }
-        return MainResults.ImageURL(hImagesUrl, lImagesUrl)
+        return MainResults.ImageURL(lImagesUrl)
     }
 }

@@ -1,2 +1,2 @@
-rootProject.name = "Live Coding"
+rootProject.name = "MVI Sample"
 include ':app'

@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.move.mvisample.R
 import com.move.mvisample.core.gone
+import com.move.mvisample.core.visible
 import com.move.mvisample.databinding.MainFragmentBinding
 import com.move.mvisample.presentation.view.base.BaseFragment
 import com.move.mvisample.presentation.view.main.adapter.CarsAdapter
@@ -34,8 +35,14 @@ class MainFragment : BaseFragment<MainFragmentBinding>() {
 
         initRecyclerView()
         startObserver()
-
         loadCarImages()
+        setClickListeners()
+    }
+
+    private fun setClickListeners() {
+        binding?.retryBtn?.setOnClickListener {
+            loadCarImages()
+        }
     }
 
     private fun loadCarImages() {
@@ -51,6 +58,7 @@ class MainFragment : BaseFragment<MainFragmentBinding>() {
     }
 
     private fun showEmptyList(show: Boolean) {
+        binding?.loadingProgressBar?.gone()
         binding?.emptyList?.isVisible = show
         binding?.list?.isVisible = !show
     }
@@ -66,20 +74,21 @@ class MainFragment : BaseFragment<MainFragmentBinding>() {
     private fun handleViewState(it: MainStates) {
         when (it) {
             is MainStates.Idle -> Log.d(TAG, "Idle: ")
-            is MainStates.ImageURLList -> {
-                if (it.lImages.isEmpty()) {
+            is MainStates.CarImagesLoaded -> {
+                if (it.carImageURLList.isEmpty()) {
                     showEmptyList(true)
                     binding?.retryBtn?.gone()
                     binding?.emptyListText?.text = getString(R.string.empty_list)
                 } else {
                     showEmptyList(false)
-                    carsAdapter.submitList(it.lImages)
+                    carsAdapter.submitList(it.carImageURLList)
                 }
             }
             is MainStates.ShowERRORMessage -> {
                 showEmptyList(true)
                 binding?.emptyListText?.text = it.reason
             }
+            is MainStates.Loading -> binding?.loadingProgressBar?.visible()
         }
     }
 

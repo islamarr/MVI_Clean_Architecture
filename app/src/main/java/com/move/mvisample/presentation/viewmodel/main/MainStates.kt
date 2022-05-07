@@ -2,8 +2,9 @@ package com.move.mvisample.presentation.viewmodel.main
 
 import com.move.mvisample.domain.entites.CarImage
 
-sealed class MainStates{ //TODO handle loading state
+sealed class MainStates{
     object Idle: MainStates()
+    object Loading: MainStates()
     data class ShowERRORMessage(val reason: String, val errorCode: Long) : MainStates()
-    data class ImageURLList(val hImages: List<CarImage>, val lImages: List<CarImage>) : MainStates()
+    data class CarImagesLoaded(val carImageURLList: List<CarImage>) : MainStates()
 }

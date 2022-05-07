@@ -30,7 +30,7 @@ class MainViewModel @Inject constructor(private val getCarImage: GetCarImageUrlU
     fun reduce(result: MainResults): MainStates =
         when (result) {
             is MainResults.ERROR -> MainStates.ShowERRORMessage(result.reason, result.errorCode)
-            is MainResults.ImageURL -> MainStates.ImageURLList(result.hImages, result.lImages)
+            is MainResults.ImageURL -> MainStates.CarImagesLoaded(result.carImageURLList)
         }
 
     fun handle(actions: MainActions): Flow<MainResults> = flow {

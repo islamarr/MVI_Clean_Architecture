@@ -13,6 +13,7 @@ class ConnectivityInterceptorImpl @Inject constructor(private val context: Conte
 
     override fun intercept(chain: Interceptor.Chain): Response {
         //TODO make sure this is the best approach
+        //TODO test no internet
         if (!Utils.isOnline(context)) throw NoInternetException(context.resources.getString(R.string.no_internet_connection))
         return chain.proceed(chain.request())
     }
