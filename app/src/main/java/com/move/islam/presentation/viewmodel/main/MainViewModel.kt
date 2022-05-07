@@ -1,11 +1,8 @@
-package com.move.islam.presentation.view.main
+package com.move.islam.presentation.viewmodel.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.move.islam.domain.usecases.GetCarImageUrlUseCase
-import com.move.islam.presentation.viewmodel.main.MainActions
-import com.move.islam.presentation.viewmodel.main.MainResults
-import com.move.islam.presentation.viewmodel.main.MainStates
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
@@ -38,7 +35,7 @@ class MainViewModel @Inject constructor(private val getCarImage: GetCarImageUrlU
 
     fun handle(actions: MainActions): Flow<MainResults> = flow {
         when (actions) {
-            is MainActions.LoadImages -> emit(getCarImage.execute("332199935"))
+            is MainActions.LoadImages -> emit(getCarImage.execute(actions.id))
         }
     }
 

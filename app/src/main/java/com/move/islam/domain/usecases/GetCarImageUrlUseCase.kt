@@ -1,7 +1,6 @@
 package com.move.islam.domain.usecases
 
-import com.move.islam.data.remote.NetworkResponse
-import com.move.islam.domain.entites.Image
+import com.move.islam.domain.entites.CarImage
 import com.move.islam.domain.repositories.GetCarImagesRepository
 import com.move.islam.presentation.viewmodel.main.MainResults
 import dagger.hilt.android.scopes.ViewModelScoped
@@ -13,19 +12,30 @@ private const val TAG = "GetCarImageUrl"
 class GetCarImageUrlUseCase @Inject constructor(private val getCarImagesRepository: GetCarImagesRepository) {
 
     suspend fun execute(id: String): MainResults {
-        return when (val response = getCarImagesRepository.getCars(id)) {
-            is NetworkResponse.Failure -> MainResults.ERROR(response.reason!!, response.httpCode)
-            is NetworkResponse.Success -> getImageURL(response.data!!.data!!.images)
-        }
+        val response = getCarImagesRepository.getCars(id)
+        return if (!response.isSuccessful)
+            MainResults.ERROR(response.message(), response.code().toLong())
+        else getImageURL(response.body()!!.carImages)
+
 
     }
 
-    private fun getImageURL(images: List<Image>): MainResults {
-        val lImagesUrl = images.map {
-            "https://" + it.uri.replace("m.mobile.de/yams-proxy/", "") + "?rule=mo-640.jpg"
+    private fun getImageURL(carImages: List<CarImage>): MainResults {
+        val lImagesUrl = carImages.map {
+            CarImage(
+                "https://" + it.uri.replace(
+                    "m.mobile.de/yams-proxy/",
+                    ""
+                ) + "?rule=mo-640.jpg"
+            )
         }
-        val hImagesUrl = images.map {
-            "https://" + it.uri.replace("m.mobile.de/yams-proxy/", "") + "?rule=mo-1600.jpg"
+        val hImagesUrl = carImages.map {
+            CarImage(
+                "https://" + it.uri.replace(
+                    "m.mobile.de/yams-proxy/",
+                    ""
+                ) + "?rule=mo-1600.jpg"
+            )
         }
         return MainResults.ImageURL(hImagesUrl, lImagesUrl)
     }

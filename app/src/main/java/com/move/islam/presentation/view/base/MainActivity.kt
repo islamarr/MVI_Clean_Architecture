@@ -1,7 +1,7 @@
 package com.move.islam.presentation.view.base
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.move.islam.R
 import dagger.hilt.android.AndroidEntryPoint
 
