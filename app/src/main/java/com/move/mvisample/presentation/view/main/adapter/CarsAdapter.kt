@@ -3,6 +3,7 @@ package com.move.mvisample.presentation.view.main.adapter
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import com.bumptech.glide.Glide
 import com.move.mvisample.R
 import com.move.mvisample.databinding.OneItemListBinding
 import com.move.mvisample.domain.entites.CarImage
+import com.move.mvisample.domain.usecases.ImageURLQUERY
 
 
 class CarsAdapter : ListAdapter<CarImage, CarsAdapter.ViewHolder>(CarsDiffCallback()) {
@@ -48,8 +50,7 @@ class CarsAdapter : ListAdapter<CarImage, CarsAdapter.ViewHolder>(CarsDiffCallba
 
     private fun navigateToDetails(view: View, url: String?) {
         val bundle = Bundle()
-        bundle.putString("url", url?.replace("?rule=mo-640.jpg", "?rule=mo-1600.jpg")) //TODO replace with safe args
-
+        bundle.putString("url", url?.replace(ImageURLQUERY.LOW_QUALITY.query, ImageURLQUERY.HIGH_QUALITY.query)) //TODO replace with safe args
         view.findNavController().navigate(
             R.id.action_mainFragment_to_detailsFragment,
             bundle

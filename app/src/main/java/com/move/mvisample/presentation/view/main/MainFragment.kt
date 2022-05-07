@@ -51,7 +51,7 @@ class MainFragment : BaseFragment<MainFragmentBinding>() {
     }
 
     private fun initRecyclerView() {
-        binding?.list?.apply {  //TODO replace with grid layout
+        binding?.list?.apply {
             carsAdapter = CarsAdapter()
             layoutManager = GridLayoutManager(requireActivity(), COLUMNS_COUNT)
             adapter = carsAdapter
@@ -75,21 +75,20 @@ class MainFragment : BaseFragment<MainFragmentBinding>() {
     private fun handleViewState(it: MainStates) {
         when (it) {
             is MainStates.Idle -> Log.d(TAG, "Idle: ")
+            is MainStates.Loading -> binding?.loadingProgressBar?.visible()
             is MainStates.CarImagesLoaded -> {
-                if (it.carImageURLList.isEmpty()) {
-                    showEmptyList(true)
-                    binding?.retryBtn?.gone()
-                    binding?.emptyListText?.text = getString(R.string.empty_list)
-                } else {
-                    showEmptyList(false)
-                    carsAdapter.submitList(it.carImageURLList)
-                }
+                showEmptyList(false)
+                carsAdapter.submitList(it.carImageURLList)
+            }
+            is MainStates.EmptyCarList -> {
+                showEmptyList(true)
+                binding?.retryBtn?.gone()
+                binding?.emptyListText?.text = getString(R.string.empty_list)
             }
             is MainStates.ShowERRORMessage -> {
                 showEmptyList(true)
                 binding?.emptyListText?.text = it.reason
             }
-            is MainStates.Loading -> binding?.loadingProgressBar?.visible()
         }
     }
 

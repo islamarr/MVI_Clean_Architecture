@@ -27,10 +27,11 @@ class MainViewModel @Inject constructor(private val getCarImage: GetCarImageUrlU
         _state.emit(state)
     }
 
-    fun reduce(result: MainResults): MainStates =
+    fun reduce(result: MainResults): MainStates = //TODO can make it private?
         when (result) {
             is MainResults.ERROR -> MainStates.ShowERRORMessage(result.reason, result.errorCode)
             is MainResults.ImageURL -> MainStates.CarImagesLoaded(result.carImageURLList)
+            is MainResults.EmptyList -> MainStates.EmptyCarList
         }
 
     fun handle(actions: MainActions): Flow<MainResults> = flow {

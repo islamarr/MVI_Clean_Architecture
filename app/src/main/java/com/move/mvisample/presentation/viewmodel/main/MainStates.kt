@@ -7,4 +7,5 @@ sealed class MainStates{
     object Loading: MainStates()
     data class ShowERRORMessage(val reason: String, val errorCode: Long) : MainStates()
     data class CarImagesLoaded(val carImageURLList: List<CarImage>) : MainStates()
+    object EmptyCarList : MainStates()
 }
