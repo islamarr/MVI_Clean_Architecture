@@ -2,10 +2,12 @@ package com.move.mvisample.presentation.view.main.adapter
 
 import android.content.Context
 import android.net.Uri
+import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -39,12 +41,20 @@ class CarsAdapter : ListAdapter<CarImage, CarsAdapter.ViewHolder>(CarsDiffCallba
             loadImage(context, item.uri, carImage)
 
             itemView.setOnClickListener { view ->
-                //TODO navigate to 2 screen
-                Toast.makeText(context, "ssssssssssssss", Toast.LENGTH_LONG).show()
+                navigateToDetails(view, item.uri)
             }
         }
     }
 
+    private fun navigateToDetails(view: View, url: String?) {
+        val bundle = Bundle()
+        bundle.putString("url", url?.replace("?rule=mo-640.jpg", "?rule=mo-1600.jpg")) //TODO replace with safe args
+
+        view.findNavController().navigate(
+            R.id.action_mainFragment_to_detailsFragment,
+            bundle
+        )
+    }
 
     private fun loadImage(context: Context, url: String?, logo: ImageView) {
         Glide.with(context).load(Uri.parse(url))

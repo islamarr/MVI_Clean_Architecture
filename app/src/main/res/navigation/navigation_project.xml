@@ -9,12 +9,15 @@
         android:id="@+id/mainFragment"
         android:name="com.move.mvisample.presentation.view.main.MainFragment"
         android:label="main_fragment"
-        tools:layout="@layout/main_fragment" />
-    <!--<fragment
-        android:id="@+id/splashFragment"
-        android:name="com."
-        android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
+        tools:layout="@layout/main_fragment">
+        <action
+            android:id="@+id/action_mainFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
 
-    </fragment>-->
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.move.mvisample.presentation.view.details.DetailsFragment"
+        android:label="DetailsFragment" />
+
 </navigation>
