@@ -23,7 +23,7 @@ class MainViewModel @Inject constructor(private val getCarImage: GetCarImageUrlU
         }.launchIn(viewModelScope)
     }
 
-    suspend fun onViewState(state: MainStates) {
+    suspend fun onViewState(state: MainStates) { //TODO test this line
         _state.emit(state)
     }
 

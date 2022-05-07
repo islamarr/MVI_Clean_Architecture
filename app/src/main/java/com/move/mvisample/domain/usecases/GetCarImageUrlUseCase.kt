@@ -10,7 +10,7 @@ import javax.inject.Inject
 @ViewModelScoped
 class GetCarImageUrlUseCase @Inject constructor(private val getCarImagesRepository: GetCarImagesRepository) {
 
-    suspend fun execute(id: String): MainResults {
+    suspend fun execute(id: String): MainResults { //TODO check coverage
         val response = getCarImagesRepository.getCars(id)
         return when {
             response.isSuccessful -> response.body()?.let {
