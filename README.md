@@ -65,11 +65,11 @@ Other Projects
 
 [0]: https://developer.android.com/jetpack/components
 [1]: https://cycle.js.org/model-view-intent.html
-[2]: https://github.com/islamarr/GitHubRepos/blob/master/app/src/main/res/drawable/mvi_diagram.png
+[2]: https://github.com/islamarr/MVI_Clean_Architecture/blob/master/app/src/main/res/drawable/mvi_diagram.png
 [3]: https://developer.android.com/jetpack/guide#fetch-data
 [4]: https://developer.android.com/training/testing/
 [5]: http://hannesdorfmann.com/android/mosby3-mvi-1/
-[6]: https://github.com/islamarr/GitHubRepos/blob/master/app/src/main/res/drawable/unit_test_coverage.png
+[6]: https://github.com/islamarr/MVI_Clean_Architecture/blob/master/app/src/main/res/drawable/unit_test_coverage.png
 [10]: https://developer.android.com/jetpack/arch/
 [11]: https://developer.android.com/topic/libraries/data-binding/
 [12]: https://developer.android.com/topic/libraries/architecture/lifecycle
@@ -84,8 +84,8 @@ Other Projects
 [33]: https://play.google.com/store/apps/details?id=com.Ihsan.Ahyaha
 [34]: https://github.com/islamarr/shutterstock_image_list
 [40]: https://img.shields.io/github/followers/islamarr?style=social
-[41]: https://img.shields.io/github/stars/islamarr/shutterstock_image_list?style=social
-[42]: https://img.shields.io/github/forks/islamarr/shutterstock_image_list?style=social
+[41]: https://img.shields.io/github/stars/islamarr/MVI_Clean_Architecture?style=social
+[42]: https://img.shields.io/github/forks/islamarr/MVI_Clean_Architecture?style=social
 [50]: https://www.sonarlint.org/
 [90]: https://bumptech.github.io/glide/
 [91]: https://kotlinlang.org/docs/reference/coroutines-overview.html
