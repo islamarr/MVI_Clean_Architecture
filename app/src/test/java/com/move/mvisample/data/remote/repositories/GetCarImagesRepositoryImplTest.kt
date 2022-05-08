@@ -26,7 +26,7 @@ class GetCarImagesRepositoryImplTest {
     }
 
     @Test
-    fun successStatue_getCars() = runBlocking {
+    fun `test get cars in success statue`() = runBlocking {
         val params = "111"
         val networkResponse = Response.success(CarResponse(listOf()))
 

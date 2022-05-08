@@ -23,15 +23,15 @@ class MainViewModel @Inject constructor(private val getCarImage: GetCarImageUrlU
         }.launchIn(viewModelScope)
     }
 
-    suspend fun onViewState(state: MainStates) { //TODO test this line
+    private suspend fun onViewState(state: MainStates) {
         _state.emit(state)
     }
 
-    fun reduce(result: MainResults): MainStates = //TODO can make it private?
+    fun reduce(result: MainResults): MainStates =
         when (result) {
-            is MainResults.ERROR -> MainStates.ShowERRORMessage(result.reason, result.errorCode)
-            is MainResults.ImageURL -> MainStates.CarImagesLoaded(result.carImageURLList)
-            is MainResults.EmptyList -> MainStates.EmptyCarList
+            is MainResults.ERROR -> MainStates.ShowErrorMessage(result.reason, result.errorCode)
+            is MainResults.CarImageURLListLoaded -> MainStates.CarImagesLoaded(result.carImageURLList)
+            is MainResults.CarImageURLEmptyList -> MainStates.EmptyCarList
         }
 
     fun handle(actions: MainActions): Flow<MainResults> = flow {
@@ -39,6 +39,5 @@ class MainViewModel @Inject constructor(private val getCarImage: GetCarImageUrlU
             is MainActions.LoadImages -> emit(getCarImage.execute(actions.id))
         }
     }
-
 
 }

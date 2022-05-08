@@ -85,7 +85,7 @@ class MainFragment : BaseFragment<MainFragmentBinding>() {
                 binding?.retryBtn?.gone()
                 binding?.emptyListText?.text = getString(R.string.empty_list)
             }
-            is MainStates.ShowERRORMessage -> {
+            is MainStates.ShowErrorMessage -> {
                 showEmptyList(true)
                 binding?.emptyListText?.text = it.reason
             }

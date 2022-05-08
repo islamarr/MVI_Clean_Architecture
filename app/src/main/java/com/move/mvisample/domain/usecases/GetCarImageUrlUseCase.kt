@@ -14,7 +14,7 @@ class GetCarImageUrlUseCase @Inject constructor(private val getCarImagesReposito
         val response = getCarImagesRepository.getCars(id)
         return when {
             response.isSuccessful -> response.body()?.let {
-                if (it.carImages.isEmpty()) MainResults.EmptyList else
+                if (it.carImages.isEmpty()) MainResults.CarImageURLEmptyList else
                     getImageURL(it.carImages)
             } ?: MainResults.ERROR(response.message(), response.code().toLong())
             else -> MainResults.ERROR(response.message(), response.code().toLong())
@@ -30,7 +30,7 @@ class GetCarImageUrlUseCase @Inject constructor(private val getCarImagesReposito
                 ) + ImageURLQUERY.LOW_QUALITY.query
             )
         }
-        return MainResults.ImageURL(lImagesUrl)
+        return MainResults.CarImageURLListLoaded(lImagesUrl)
     }
 }
 

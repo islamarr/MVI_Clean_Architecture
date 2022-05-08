@@ -29,7 +29,7 @@ class GetCarImageUrlUseCaseTest {
     }
 
     @Test
-    fun testReturnImageUrlCorrectly() = runBlocking {
+    fun `when execute usecase return CarImageURLListLoaded result with updated urls in success response`() = runBlocking {
 
         val id = "111"
         val url = "m.mobile.de/yams-proxy/img.classistatic.de/api/v1/mo-prod/images/78/"
@@ -41,13 +41,13 @@ class GetCarImageUrlUseCaseTest {
         val expectedImageList = listOf(CarImage(expectedUrl))
 
         val actual = useCase.execute(id)
-        val expected = MainResults.ImageURL(expectedImageList)
+        val expected = MainResults.CarImageURLListLoaded(expectedImageList)
 
         Assert.assertEquals(actual, expected)
     }
 
     @Test
-    fun testReturnEmptyList() = runBlocking {
+    fun `when get empty car list response return CarImageURLEmptyList result`() = runBlocking {
 
         val id = "111"
         val imageList = listOf<CarImage>()
@@ -55,13 +55,13 @@ class GetCarImageUrlUseCaseTest {
         whenever(repository.getCars(id)).thenReturn(Response.success(CarResponse(imageList)))
 
         val actual = useCase.execute(id)
-        val expected = MainResults.EmptyList
+        val expected = MainResults.CarImageURLEmptyList
 
         Assert.assertEquals(actual, expected)
     }
 
     @Test
-    fun testFailureResponse() = runBlocking {
+    fun `test failure Response`() = runBlocking {
 
         val id = "111"
         val errorResponse =
