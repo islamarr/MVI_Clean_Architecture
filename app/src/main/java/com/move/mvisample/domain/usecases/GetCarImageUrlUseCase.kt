@@ -12,15 +12,15 @@ import javax.inject.Inject
 class GetCarImageUrlUseCase @Inject constructor(private val getCarImagesRepository: GetCarImagesRepository) {
 
     suspend fun execute(id: String): MainResults {
-        return when(val response = getCarImagesRepository.getCars(id)){
+        return when (val response = getCarImagesRepository.getCars(id)) {
             is NetworkResponse.Failure -> MainResults.ERROR(response.reason!!, response.httpCode)
             is NetworkResponse.Success -> {
-                    response.data?.body()?.let {
-                        if (it.carImages.isEmpty()) MainResults.CarImageURLEmptyList else
-                            getImageURL(it.carImages)
-                    } ?: MainResults.UnExpectedError
-                }
+                response.data?.body()?.let {
+                    if (it.carImages.isEmpty()) MainResults.CarImageURLEmptyList else
+                        getImageURL(it.carImages)
+                } ?: MainResults.UnExpectedError
             }
+        }
 
     }
 

@@ -2,8 +2,6 @@ package com.move.mvisample.presentation.view.main.adapter
 
 import android.content.Context
 import android.net.Uri
-import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,7 +48,9 @@ class CarsAdapter : ListAdapter<CarImage, CarsAdapter.ViewHolder>(CarsDiffCallba
     }
 
     private fun navigateToDetails(view: View, url: String?) {
-        val hqImageUrl = url?.replace(ImageURLQUERY.LOW_QUALITY.query, ImageURLQUERY.HIGH_QUALITY.query).toString()
+        val hqImageUrl =
+            url?.replace(ImageURLQUERY.LOW_QUALITY.query, ImageURLQUERY.HIGH_QUALITY.query)
+                .toString()
         view.findNavController().navigate(
             MainFragmentDirections.actionMainFragmentToDetailsFragment(hqImageUrl)
         )

@@ -6,8 +6,6 @@ import com.move.mvisample.domain.entites.CarResponse
 import com.move.mvisample.domain.repositories.GetCarImagesRepository
 import com.move.mvisample.presentation.viewmodel.main.MainResults
 import kotlinx.coroutines.runBlocking
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.ResponseBody.Companion.toResponseBody
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -37,7 +35,13 @@ class GetCarImageUrlUseCaseTest {
             val url = "m.mobile.de/yams-proxy/img.classistatic.de/api/v1/mo-prod/images/78/"
             val imageList = listOf(CarImage(url))
 
-            whenever(repository.getCars(id)).thenReturn(NetworkResponse.Success(Response.success(CarResponse(imageList))))
+            whenever(repository.getCars(id)).thenReturn(
+                NetworkResponse.Success(
+                    Response.success(
+                        CarResponse(imageList)
+                    )
+                )
+            )
 
             val expectedUrl =
                 "https://img.classistatic.de/api/v1/mo-prod/images/78/?rule=mo-640.jpg"
@@ -55,7 +59,13 @@ class GetCarImageUrlUseCaseTest {
         val id = "111"
         val imageList = listOf<CarImage>()
 
-        whenever(repository.getCars(id)).thenReturn(NetworkResponse.Success(Response.success(CarResponse(imageList))))
+        whenever(repository.getCars(id)).thenReturn(
+            NetworkResponse.Success(
+                Response.success(
+                    CarResponse(imageList)
+                )
+            )
+        )
 
         val actual = useCase.execute(id)
         val expected = MainResults.CarImageURLEmptyList
@@ -67,7 +77,7 @@ class GetCarImageUrlUseCaseTest {
     fun `test failure Response`() = runBlocking {
 
         val id = "111"
-        val response = NetworkResponse.Failure<Response<CarResponse>>(501,  "reason")
+        val response = NetworkResponse.Failure<Response<CarResponse>>(501, "reason")
 
         whenever(repository.getCars(id)).thenReturn(response)
 

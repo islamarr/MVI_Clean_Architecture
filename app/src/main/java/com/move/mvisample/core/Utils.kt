@@ -8,8 +8,8 @@ import android.os.Build
 object Utils {
     @Suppress("DEPRECATION")
     fun isOnline(context: Context): Boolean {
-         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE)
-                 as ConnectivityManager
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE)
+                as ConnectivityManager
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val network = connectivityManager.activeNetwork ?: return false
@@ -22,7 +22,7 @@ object Utils {
                 else -> false
             }
         } else {
-           val networkInfo =
+            val networkInfo =
                 connectivityManager.activeNetworkInfo ?: return false
             return networkInfo.isConnected
         }
