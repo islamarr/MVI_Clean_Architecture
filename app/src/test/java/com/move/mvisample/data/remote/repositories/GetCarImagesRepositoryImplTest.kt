@@ -1,6 +1,7 @@
 package com.move.mvisample.data.remote.repositories
 
 import com.move.mvisample.data.remote.AppService
+import com.move.mvisample.data.remote.NetworkResponse
 import com.move.mvisample.domain.entites.CarResponse
 import com.move.mvisample.presentation.viewmodel.main.MainResults
 import junit.framework.TestCase.assertEquals
@@ -28,9 +29,10 @@ class GetCarImagesRepositoryImplTest {
     @Test
     fun `test get cars in success statue`() = runBlocking {
         val params = "111"
-        val networkResponse = Response.success(CarResponse(listOf()))
+        val response = Response.success(CarResponse(listOf()))
+        val networkResponse = NetworkResponse.Success(response)
 
-        whenever(appService.getCars(params)).thenReturn(networkResponse)
+        whenever(appService.getCars(params)).thenReturn(response)
 
         assertEquals(networkResponse, repository.getCars(params))
     }

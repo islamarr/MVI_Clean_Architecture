@@ -87,7 +87,7 @@ class MainFragment : BaseFragment<MainFragmentBinding>() {
             }
             is MainStates.ShowErrorMessage -> {
                 showEmptyList(true)
-                binding?.emptyListText?.text = it.reason
+                binding?.emptyListText?.text = getString(R.string.error_message)
             }
         }
     }

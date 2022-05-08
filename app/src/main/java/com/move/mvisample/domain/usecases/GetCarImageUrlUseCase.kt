@@ -1,6 +1,7 @@
 package com.move.mvisample.domain.usecases
 
 import com.move.mvisample.core.HTTPS
+import com.move.mvisample.data.remote.NetworkResponse
 import com.move.mvisample.domain.entites.CarImage
 import com.move.mvisample.domain.repositories.GetCarImagesRepository
 import com.move.mvisample.presentation.viewmodel.main.MainResults
@@ -11,14 +12,16 @@ import javax.inject.Inject
 class GetCarImageUrlUseCase @Inject constructor(private val getCarImagesRepository: GetCarImagesRepository) {
 
     suspend fun execute(id: String): MainResults {
-        val response = getCarImagesRepository.getCars(id)
-        return when {
-            response.isSuccessful -> response.body()?.let {
-                if (it.carImages.isEmpty()) MainResults.CarImageURLEmptyList else
-                    getImageURL(it.carImages)
-            } ?: MainResults.UnExpectedError
-            else -> MainResults.ERROR(response.message(), response.code().toLong())
-        }
+        return when(val response = getCarImagesRepository.getCars(id)){
+            is NetworkResponse.Failure -> MainResults.ERROR(response.reason!!, response.httpCode)
+            is NetworkResponse.Success -> {
+                    response.data?.body()?.let {
+                        if (it.carImages.isEmpty()) MainResults.CarImageURLEmptyList else
+                            getImageURL(it.carImages)
+                    } ?: MainResults.UnExpectedError
+                }
+            }
+
     }
 
     private fun getImageURL(carImages: List<CarImage>): MainResults {

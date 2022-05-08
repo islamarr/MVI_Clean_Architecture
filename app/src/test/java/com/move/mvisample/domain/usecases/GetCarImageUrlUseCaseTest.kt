@@ -1,5 +1,6 @@
 package com.move.mvisample.domain.usecases
 
+import com.move.mvisample.data.remote.NetworkResponse
 import com.move.mvisample.domain.entites.CarImage
 import com.move.mvisample.domain.entites.CarResponse
 import com.move.mvisample.domain.repositories.GetCarImagesRepository
@@ -36,7 +37,7 @@ class GetCarImageUrlUseCaseTest {
             val url = "m.mobile.de/yams-proxy/img.classistatic.de/api/v1/mo-prod/images/78/"
             val imageList = listOf(CarImage(url))
 
-            whenever(repository.getCars(id)).thenReturn(Response.success(CarResponse(imageList)))
+            whenever(repository.getCars(id)).thenReturn(NetworkResponse.Success(Response.success(CarResponse(imageList))))
 
             val expectedUrl =
                 "https://img.classistatic.de/api/v1/mo-prod/images/78/?rule=mo-640.jpg"
@@ -54,7 +55,7 @@ class GetCarImageUrlUseCaseTest {
         val id = "111"
         val imageList = listOf<CarImage>()
 
-        whenever(repository.getCars(id)).thenReturn(Response.success(CarResponse(imageList)))
+        whenever(repository.getCars(id)).thenReturn(NetworkResponse.Success(Response.success(CarResponse(imageList))))
 
         val actual = useCase.execute(id)
         val expected = MainResults.CarImageURLEmptyList
@@ -66,15 +67,12 @@ class GetCarImageUrlUseCaseTest {
     fun `test failure Response`() = runBlocking {
 
         val id = "111"
-        val errorResponse =
-            "{\n\"type\": \"error\",\n\"message\": \"error\"}"
-        val errorResponseBody = errorResponse.toResponseBody("application/json".toMediaTypeOrNull())
-        val response = Response.error<CarResponse>(501, errorResponseBody)
+        val response = NetworkResponse.Failure<Response<CarResponse>>(501,  "reason")
 
         whenever(repository.getCars(id)).thenReturn(response)
 
         val actual = useCase.execute(id)
-        val expected = MainResults.ERROR(response.message(), response.code().toLong())
+        val expected = MainResults.ERROR(response.reason!!, response.httpCode)
 
         assertEquals(actual, expected)
     }
@@ -84,7 +82,7 @@ class GetCarImageUrlUseCaseTest {
 
         val id = "111"
 
-        whenever(repository.getCars(id)).thenReturn(Response.success(null))
+        whenever(repository.getCars(id)).thenReturn(NetworkResponse.Success(Response.success(null)))
 
         val actual = useCase.execute(id)
         val expected = MainResults.UnExpectedError

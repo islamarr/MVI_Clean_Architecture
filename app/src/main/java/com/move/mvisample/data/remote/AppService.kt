@@ -8,5 +8,5 @@ import retrofit2.http.Path
 interface AppService {
 
     @GET("/svc/a/{id}")
-    suspend fun getCars(@Path("id") id: String): Response<CarResponse> //TODO use custom wrapper class
+    suspend fun getCars(@Path("id") id: String): Response<CarResponse>
 }

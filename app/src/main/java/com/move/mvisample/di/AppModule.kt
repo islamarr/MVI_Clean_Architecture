@@ -1,15 +1,11 @@
 package com.move.mvisample.di
 
-import android.content.Context
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.move.mvisample.BuildConfig
-import com.move.mvisample.data.interceptors.ConnectivityInterceptor
-import com.move.mvisample.data.interceptors.ConnectivityInterceptorImpl
 import com.move.mvisample.data.remote.AppService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -24,12 +20,6 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideConnectivityInterceptor(@ApplicationContext context: Context): ConnectivityInterceptor {
-        return ConnectivityInterceptorImpl(context)
-    }
-
-    @Singleton
-    @Provides
     fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         if (BuildConfig.DEBUG) httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -39,7 +29,6 @@ object AppModule {
     @Singleton
     @Provides
     fun provideAPI(
-        connectivityInterceptor: ConnectivityInterceptor,
         httpLoggingInterceptor: HttpLoggingInterceptor
     ): AppService {
 
@@ -47,7 +36,6 @@ object AppModule {
             .readTimeout(15, TimeUnit.SECONDS)
             .writeTimeout(15, TimeUnit.SECONDS)
             .connectTimeout(15, TimeUnit.SECONDS)
-            .addNetworkInterceptor(connectivityInterceptor)
             .addInterceptor(httpLoggingInterceptor)
             .build()
 

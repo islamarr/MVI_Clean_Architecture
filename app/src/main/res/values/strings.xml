@@ -2,7 +2,7 @@
     <string name="app_name">MVI Sample</string>
 
 
-    <string name="no_internet_connection">No internet connection</string>
+    <string name="error_message">Something went wrong. please try again</string>
     <string name="retry">Retry</string>
     <string name="image_car_desc">Car Pic</string>
     <string name="empty_list">No Images found</string>

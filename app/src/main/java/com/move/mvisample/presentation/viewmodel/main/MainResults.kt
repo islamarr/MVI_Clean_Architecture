@@ -6,5 +6,5 @@ sealed class MainResults {
     object UnExpectedError: MainResults()
     object CarImageURLEmptyList: MainResults()
     data class CarImageURLListLoaded(val carImageURLList: List<CarImage>) : MainResults()
-    data class ERROR(val reason: String, val errorCode: Long) : MainResults()
+    data class ERROR(val reason: String, val errorCode: Int) : MainResults()
 }
