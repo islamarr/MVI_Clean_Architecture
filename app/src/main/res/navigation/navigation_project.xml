@@ -18,6 +18,13 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.move.mvisample.presentation.view.details.DetailsFragment"
-        android:label="DetailsFragment" />
+        android:label="DetailsFragment" >
+
+        <argument
+            android:name="url"
+            app:argType="string"
+            app:nullable="false" />
+
+    </fragment>
 
 </navigation>

@@ -16,6 +16,7 @@ import com.move.mvisample.R
 import com.move.mvisample.databinding.OneItemListBinding
 import com.move.mvisample.domain.entites.CarImage
 import com.move.mvisample.domain.usecases.ImageURLQUERY
+import com.move.mvisample.presentation.view.main.MainFragmentDirections
 
 
 class CarsAdapter : ListAdapter<CarImage, CarsAdapter.ViewHolder>(CarsDiffCallback()) {
@@ -49,11 +50,9 @@ class CarsAdapter : ListAdapter<CarImage, CarsAdapter.ViewHolder>(CarsDiffCallba
     }
 
     private fun navigateToDetails(view: View, url: String?) {
-        val bundle = Bundle()
-        bundle.putString("url", url?.replace(ImageURLQUERY.LOW_QUALITY.query, ImageURLQUERY.HIGH_QUALITY.query)) //TODO replace with safe args
+        val hqImageUrl = url?.replace(ImageURLQUERY.LOW_QUALITY.query, ImageURLQUERY.HIGH_QUALITY.query).toString()
         view.findNavController().navigate(
-            R.id.action_mainFragment_to_detailsFragment,
-            bundle
+            MainFragmentDirections.actionMainFragmentToDetailsFragment(hqImageUrl)
         )
     }
 
