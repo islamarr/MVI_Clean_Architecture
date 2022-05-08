@@ -16,7 +16,7 @@ class GetCarImageUrlUseCase @Inject constructor(private val getCarImagesReposito
             response.isSuccessful -> response.body()?.let {
                 if (it.carImages.isEmpty()) MainResults.CarImageURLEmptyList else
                     getImageURL(it.carImages)
-            } ?: MainResults.ERROR(response.message(), response.code().toLong())
+            } ?: MainResults.UnExpectedError
             else -> MainResults.ERROR(response.message(), response.code().toLong())
         }
     }

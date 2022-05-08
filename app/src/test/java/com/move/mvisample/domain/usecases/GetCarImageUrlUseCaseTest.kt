@@ -4,10 +4,10 @@ import com.move.mvisample.domain.entites.CarImage
 import com.move.mvisample.domain.entites.CarResponse
 import com.move.mvisample.domain.repositories.GetCarImagesRepository
 import com.move.mvisample.presentation.viewmodel.main.MainResults
-import junit.framework.Assert
 import kotlinx.coroutines.runBlocking
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody.Companion.toResponseBody
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -29,22 +29,24 @@ class GetCarImageUrlUseCaseTest {
     }
 
     @Test
-    fun `when execute usecase return CarImageURLListLoaded result with updated urls in success response`() = runBlocking {
+    fun `when execute usecase return CarImageURLListLoaded result with updated urls in success response`() =
+        runBlocking {
 
-        val id = "111"
-        val url = "m.mobile.de/yams-proxy/img.classistatic.de/api/v1/mo-prod/images/78/"
-        val imageList = listOf(CarImage(url))
+            val id = "111"
+            val url = "m.mobile.de/yams-proxy/img.classistatic.de/api/v1/mo-prod/images/78/"
+            val imageList = listOf(CarImage(url))
 
-        whenever(repository.getCars(id)).thenReturn(Response.success(CarResponse(imageList)))
+            whenever(repository.getCars(id)).thenReturn(Response.success(CarResponse(imageList)))
 
-        val expectedUrl = "https://img.classistatic.de/api/v1/mo-prod/images/78/?rule=mo-640.jpg"
-        val expectedImageList = listOf(CarImage(expectedUrl))
+            val expectedUrl =
+                "https://img.classistatic.de/api/v1/mo-prod/images/78/?rule=mo-640.jpg"
+            val expectedImageList = listOf(CarImage(expectedUrl))
 
-        val actual = useCase.execute(id)
-        val expected = MainResults.CarImageURLListLoaded(expectedImageList)
+            val actual = useCase.execute(id)
+            val expected = MainResults.CarImageURLListLoaded(expectedImageList)
 
-        Assert.assertEquals(actual, expected)
-    }
+            assertEquals(actual, expected)
+        }
 
     @Test
     fun `when get empty car list response return CarImageURLEmptyList result`() = runBlocking {
@@ -57,7 +59,7 @@ class GetCarImageUrlUseCaseTest {
         val actual = useCase.execute(id)
         val expected = MainResults.CarImageURLEmptyList
 
-        Assert.assertEquals(actual, expected)
+        assertEquals(actual, expected)
     }
 
     @Test
@@ -74,7 +76,20 @@ class GetCarImageUrlUseCaseTest {
         val actual = useCase.execute(id)
         val expected = MainResults.ERROR(response.message(), response.code().toLong())
 
-        Assert.assertEquals(actual, expected)
+        assertEquals(actual, expected)
+    }
+
+    @Test
+    fun `when get null response return UnExpectedError result`() = runBlocking {
+
+        val id = "111"
+
+        whenever(repository.getCars(id)).thenReturn(Response.success(null))
+
+        val actual = useCase.execute(id)
+        val expected = MainResults.UnExpectedError
+
+        assertEquals(actual, expected)
     }
 
 }

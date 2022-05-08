@@ -29,6 +29,7 @@ class MainViewModel @Inject constructor(private val getCarImage: GetCarImageUrlU
 
     fun reduce(result: MainResults): MainStates =
         when (result) {
+            is MainResults.UnExpectedError -> MainStates.Idle
             is MainResults.ERROR -> MainStates.ShowErrorMessage(result.reason, result.errorCode)
             is MainResults.CarImageURLListLoaded -> MainStates.CarImagesLoaded(result.carImageURLList)
             is MainResults.CarImageURLEmptyList -> MainStates.EmptyCarList

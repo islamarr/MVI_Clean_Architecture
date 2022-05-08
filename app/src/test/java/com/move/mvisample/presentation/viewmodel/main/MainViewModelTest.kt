@@ -100,4 +100,13 @@ class MainViewModelTest {
         assertEquals(actual, expected)
     }
 
+    @Test
+    fun `when reduce UnExpectedError result return Idle state`() = runBlocking {
+
+        val actual = mainViewModel.reduce(MainResults.UnExpectedError)
+        val expected = MainStates.Idle
+
+        assertEquals(actual, expected)
+    }
+
 }
