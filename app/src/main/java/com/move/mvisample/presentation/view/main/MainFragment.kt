@@ -9,9 +9,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.move.mvisample.R
-import com.move.mvisample.core.COLUMNS_COUNT
-import com.move.mvisample.core.gone
-import com.move.mvisample.core.visible
+import com.move.mvisample.common.CAR_LIST_ID
+import com.move.mvisample.common.COLUMNS_COUNT
+import com.move.mvisample.common.gone
+import com.move.mvisample.common.visible
 import com.move.mvisample.databinding.MainFragmentBinding
 import com.move.mvisample.presentation.view.base.BaseFragment
 import com.move.mvisample.presentation.view.main.adapter.CarsAdapter
@@ -29,39 +30,23 @@ class MainFragment : BaseFragment<MainFragmentBinding>() {
 
     private val viewModel: MainViewModel by viewModels()
     private lateinit var carsAdapter: CarsAdapter
+
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> MainFragmentBinding
         get() = MainFragmentBinding::inflate
 
     override fun setupOnViewCreated(view: View) {
-
         initRecyclerView()
         startObserver()
         loadCarImages()
         setClickListeners()
     }
 
-    private fun setClickListeners() {
-        binding?.retryBtn?.setOnClickListener {
-            loadCarImages()
-        }
-    }
-
-    private fun loadCarImages() {
-        viewModel.dispatch(MainActions.LoadImages(id = "332199935"))
-    }
-
     private fun initRecyclerView() {
-        binding?.list?.apply {
+        binding.list.apply {
             carsAdapter = CarsAdapter()
             layoutManager = GridLayoutManager(requireActivity(), COLUMNS_COUNT)
             adapter = carsAdapter
         }
-    }
-
-    private fun showEmptyList(show: Boolean) {
-        binding?.loadingProgressBar?.gone()
-        binding?.emptyList?.isVisible = show
-        binding?.list?.isVisible = !show
     }
 
     private fun startObserver() {
@@ -72,22 +57,38 @@ class MainFragment : BaseFragment<MainFragmentBinding>() {
         }
     }
 
+    private fun setClickListeners() {
+        binding.retryBtn.setOnClickListener {
+            loadCarImages()
+        }
+    }
+
+    private fun loadCarImages() {
+        viewModel.dispatch(MainActions.LoadImages(id = CAR_LIST_ID))
+    }
+
+    private fun showEmptyList(show: Boolean) {
+        binding.loadingProgressBar.gone()
+        binding.emptyList.isVisible = show
+        binding.list.isVisible = !show
+    }
+
     private fun handleViewState(it: MainStates) {
         when (it) {
-            is MainStates.Idle -> Log.d(TAG, "Idle: ")
-            is MainStates.Loading -> binding?.loadingProgressBar?.visible()
+            is MainStates.Idle -> Log.d(TAG, "Idle")
+            is MainStates.Loading -> binding.loadingProgressBar.visible()
             is MainStates.CarImagesLoaded -> {
                 showEmptyList(false)
                 carsAdapter.submitList(it.carImageURLList)
             }
             is MainStates.EmptyCarList -> {
                 showEmptyList(true)
-                binding?.retryBtn?.gone()
-                binding?.emptyListText?.text = getString(R.string.empty_list)
+                binding.retryBtn.gone()
+                binding.emptyListText.text = getString(R.string.empty_list)
             }
             is MainStates.ShowErrorMessage -> {
                 showEmptyList(true)
-                binding?.emptyListText?.text = getString(R.string.error_message)
+                binding.emptyListText.text = getString(R.string.error_message)
             }
         }
     }

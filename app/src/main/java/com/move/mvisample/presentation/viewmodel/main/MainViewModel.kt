@@ -14,7 +14,6 @@ class MainViewModel @Inject constructor(private val getCarImage: GetCarImageUrlU
     val state: StateFlow<MainStates>
         get() = _state.asStateFlow()
 
-
     fun dispatch(action: MainActions) {
         handle(action).map { result ->
             reduce(result)

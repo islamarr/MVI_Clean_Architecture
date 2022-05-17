@@ -1,6 +1,6 @@
 package com.move.mvisample.domain.usecases
 
-import com.move.mvisample.core.HTTPS
+import com.move.mvisample.common.HTTPS
 import com.move.mvisample.data.remote.NetworkResponse
 import com.move.mvisample.domain.entites.CarImage
 import com.move.mvisample.domain.repositories.GetCarImagesRepository
@@ -17,23 +17,19 @@ class GetCarImageUrlUseCase @Inject constructor(private val getCarImagesReposito
             is NetworkResponse.Success -> {
                 response.data?.body()?.let {
                     if (it.carImages.isEmpty()) MainResults.CarImageURLEmptyList else
-                        getImageURL(it.carImages)
+                        MainResults.CarImageURLListLoaded(getImagesUrlList(it.carImages))
                 } ?: MainResults.UnExpectedError
             }
         }
-
     }
 
-    private fun getImageURL(carImages: List<CarImage>): MainResults {
-        val lImagesUrl = carImages.map {
-            CarImage(
-                HTTPS + it.uri.replace(
-                    "m.mobile.de/yams-proxy/",
-                    ""
-                ) + ImageURLQUERY.LOW_QUALITY.query
-            )
-        }
-        return MainResults.CarImageURLListLoaded(lImagesUrl)
+    private fun getImagesUrlList(carImages: List<CarImage>) = carImages.map {
+        CarImage(
+            HTTPS + it.uri.replace(
+                "m.mobile.de/yams-proxy/",
+                ""
+            ) + ImageURLQUERY.LOW_QUALITY.query
+        )
     }
 }
 

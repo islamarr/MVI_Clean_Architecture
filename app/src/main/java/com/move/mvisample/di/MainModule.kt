@@ -12,6 +12,6 @@ import dagger.hilt.android.components.ViewModelComponent
 abstract class MainModule {
 
     @Binds
-    abstract fun provideRepo(repository: GetCarImagesRepositoryImpl): GetCarImagesRepository
+    abstract fun bindGetCarImagesRepository(repository: GetCarImagesRepositoryImpl): GetCarImagesRepository
 
 }

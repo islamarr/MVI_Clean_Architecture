@@ -1,4 +1,4 @@
-package com.move.mvisample.core
+package com.move.mvisample.common
 
 import android.view.View
 
@@ -8,8 +8,4 @@ fun View.gone() {
 
 fun View.visible() {
     visibility = View.VISIBLE
-}
-
-fun View.invisible() {
-    visibility = View.INVISIBLE
 }

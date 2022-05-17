@@ -15,10 +15,10 @@ import retrofit2.Response
 
 class GetCarImagesRepositoryImplTest {
 
-    lateinit var repository: GetCarImagesRepositoryImpl
+    private lateinit var repository: GetCarImagesRepositoryImpl
 
     @Mock
-    lateinit var appService: AppService
+    private lateinit var appService: AppService
 
     @Before
     fun setUp() {

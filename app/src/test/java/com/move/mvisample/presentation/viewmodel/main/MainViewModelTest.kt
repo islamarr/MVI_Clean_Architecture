@@ -26,10 +26,10 @@ class MainViewModelTest {
     private lateinit var mainViewModel: MainViewModel
 
     @get:Rule
-    var instantTaskExecutorRule = InstantTaskExecutorRule()
+    val instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @get:Rule
-    var mainCoroutineRule = MainCoroutineRule()
+    val mainCoroutineRule = MainCoroutineRule()
 
     @Mock
     private lateinit var mainUseCase: GetCarImageUrlUseCase

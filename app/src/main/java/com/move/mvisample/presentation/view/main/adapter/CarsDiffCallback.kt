@@ -7,7 +7,7 @@ import com.move.mvisample.domain.entites.CarImage
 class CarsDiffCallback : DiffUtil.ItemCallback<CarImage>() {
 
     override fun areItemsTheSame(oldItem: CarImage, newItem: CarImage) =
-        oldItem.uri == newItem.uri //TODO replace it with Id
+        oldItem.uri == newItem.uri //TODO replace it with Id (Need to be added from backend side)
 
     override fun areContentsTheSame(oldItem: CarImage, newItem: CarImage) =
         oldItem == newItem

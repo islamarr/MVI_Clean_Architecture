@@ -2,6 +2,7 @@ package com.move.mvisample.di
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.move.mvisample.BuildConfig
+import com.move.mvisample.common.TIME_OUT_IN_SECONDS
 import com.move.mvisample.data.remote.AppService
 import dagger.Module
 import dagger.Provides
@@ -33,9 +34,9 @@ object AppModule {
     ): AppService {
 
         val okkHttpclient = OkHttpClient.Builder()
-            .readTimeout(15, TimeUnit.SECONDS)
-            .writeTimeout(15, TimeUnit.SECONDS)
-            .connectTimeout(15, TimeUnit.SECONDS)
+            .readTimeout(TIME_OUT_IN_SECONDS, TimeUnit.SECONDS)
+            .writeTimeout(TIME_OUT_IN_SECONDS, TimeUnit.SECONDS)
+            .connectTimeout(TIME_OUT_IN_SECONDS, TimeUnit.SECONDS)
             .addInterceptor(httpLoggingInterceptor)
             .build()
 

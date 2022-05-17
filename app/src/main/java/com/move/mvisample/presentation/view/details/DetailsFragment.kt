@@ -27,6 +27,6 @@ class DetailsFragment : BaseFragment<DetailsFragmentBinding>() {
         Glide.with(requireContext()).load(url)
             .placeholder(R.drawable.ic_launcher_background)
             .thumbnail(0.1f)
-            .into(binding?.carHDImage!!)
+            .into(binding.carHDImage)
     }
 }

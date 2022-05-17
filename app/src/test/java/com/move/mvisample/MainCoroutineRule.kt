@@ -22,7 +22,6 @@ class MainCoroutineRule(
 
     override fun finished(description: Description?) {
         super.finished(description)
-        // cleanupTestCoroutines()
         Dispatchers.resetMain()
     }
 }

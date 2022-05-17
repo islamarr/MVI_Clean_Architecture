@@ -7,14 +7,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
-abstract class BaseFragment<T : ViewBinding> : Fragment() {
+abstract class BaseFragment<viewBinding : ViewBinding> : Fragment() {
 
-    private var _binding: ViewBinding? = null
-    abstract val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> T
+    private var _binding: viewBinding? = null
+    protected val binding: viewBinding
+        get() {
+            return _binding ?: throw IllegalStateException(
+                "data binding should not be requested before onViewCreated is called"
+            )
+        }
 
-    protected val binding: T?
-        get() = _binding as? T
-
+    abstract val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> viewBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,7 +25,7 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = bindingInflater.invoke(layoutInflater, container, false)
-        return _binding!!.root
+        return _binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,7 +36,7 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
     abstract fun setupOnViewCreated(view: View)
 
     override fun onDestroy() {
-        super.onDestroy()
         _binding = null
+        super.onDestroy()
     }
 }
