@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.islam.mvisample.R
+import com.islam.mvisample.common.IMAGE_SIZE_MULTIPLIER
 import com.islam.mvisample.databinding.DetailsFragmentBinding
 import com.islam.mvisample.presentation.view.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,7 +28,8 @@ class DetailsFragment : BaseFragment<DetailsFragmentBinding>() {
         Glide.with(requireContext()).load(url)
             .placeholder(R.drawable.loading_img)
             .error(R.drawable.placeholder_img)
-            .thumbnail(0.1f)
+            .thumbnail(IMAGE_SIZE_MULTIPLIER)
             .into(binding.carHDImage)
     }
+
 }

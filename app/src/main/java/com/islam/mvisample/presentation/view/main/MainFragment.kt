@@ -75,7 +75,7 @@ class MainFragment : BaseFragment<MainFragmentBinding>() {
 
     private fun handleViewState(it: MainStates) {
         when (it) {
-            is MainStates.Idle -> Log.d(TAG, "Idle")
+            is MainStates.Idle -> Log.d(TAG, "Idle State")
             is MainStates.Loading -> binding.loadingProgressBar.visible()
             is MainStates.CarImagesLoaded -> {
                 showEmptyList(false)
