@@ -58,7 +58,8 @@ class CarsAdapter : ListAdapter<CarImage, CarsAdapter.ViewHolder>(CarsDiffCallba
 
     private fun loadImage(context: Context, url: String?, logo: ImageView) {
         Glide.with(context).load(Uri.parse(url))
-            .placeholder(R.drawable.ic_launcher_background)
+            .placeholder(R.drawable.loading_img)
+            .error(R.drawable.placeholder_img)
             .thumbnail(0.1f)
             .into(logo)
     }
