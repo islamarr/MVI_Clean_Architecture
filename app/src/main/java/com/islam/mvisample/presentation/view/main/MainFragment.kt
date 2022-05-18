@@ -69,7 +69,7 @@ class MainFragment : BaseFragment<MainFragmentBinding>() {
 
     private fun showEmptyList(show: Boolean) {
         binding.loadingProgressBar.gone()
-        binding.emptyList.isVisible = show
+        binding.emptyListGroup.isVisible = show
         binding.list.isVisible = !show
     }
 
