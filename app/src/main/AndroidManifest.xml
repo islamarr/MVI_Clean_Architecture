@@ -15,10 +15,10 @@
         android:theme="@style/Theme.Islam">
         <activity
             android:name="com.islam.mvisample.presentation.view.base.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="fullSensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

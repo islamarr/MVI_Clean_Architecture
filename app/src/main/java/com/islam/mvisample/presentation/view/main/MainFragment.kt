@@ -10,7 +10,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.islam.mvisample.R
 import com.islam.mvisample.common.CAR_LIST_ID
-import com.islam.mvisample.common.COLUMNS_COUNT
 import com.islam.mvisample.common.gone
 import com.islam.mvisample.common.visible
 import com.islam.mvisample.databinding.MainFragmentBinding
@@ -44,7 +43,8 @@ class MainFragment : BaseFragment<MainFragmentBinding>() {
     private fun initRecyclerView() {
         binding.list.apply {
             carsAdapter = CarsAdapter()
-            layoutManager = GridLayoutManager(requireActivity(), COLUMNS_COUNT)
+            val columnsCount = resources.getInteger(R.integer.columns_count)
+            layoutManager = GridLayoutManager(requireActivity(), columnsCount)
             adapter = carsAdapter
         }
     }

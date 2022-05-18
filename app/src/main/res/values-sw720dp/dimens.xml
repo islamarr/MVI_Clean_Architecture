@@ -24,4 +24,7 @@
     <dimen name="height_small">70dp</dimen>
     <dimen name="width_normal">160dp</dimen>
 
+    <!-- Grid columns count -->
+    <integer name="columns_count">3</integer>
+
 </resources>
