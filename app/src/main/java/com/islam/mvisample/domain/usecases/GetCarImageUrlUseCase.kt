@@ -13,11 +13,15 @@ class GetCarImageUrlUseCase @Inject constructor(private val getCarImagesReposito
 
     suspend fun execute(id: String): MainResults {
         return when (val response = getCarImagesRepository.getCars(id)) {
-            is NetworkResponse.Failure -> MainResults.ERROR(response.reason!!, response.httpCode)
             is NetworkResponse.Success -> {
                 response.data?.body()?.let {
                     if (it.carImages.isEmpty()) MainResults.CarImageURLEmptyList else
                         MainResults.CarImageURLListLoaded(getImagesUrlList(it.carImages))
+                } ?: MainResults.UnExpectedError
+            }
+            is NetworkResponse.Failure -> {
+                response.reason?.let {
+                    MainResults.ERROR(response.reason, response.httpCode)
                 } ?: MainResults.UnExpectedError
             }
         }
