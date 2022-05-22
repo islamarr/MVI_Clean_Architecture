@@ -8,7 +8,7 @@ About this project
 
 🛠 Simple implementation for MVI architecture pattern and Clean Architecture.
 
-🛠 Unit tests included with test coverage round 100% for repositories, UseCases and ViewModels.
+🛠 Unit tests included with test coverage round 100% for dataSources, repositories, UseCases and ViewModels.
 
 🛠 SOLID principles.
 
