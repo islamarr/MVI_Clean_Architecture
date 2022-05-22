@@ -130,10 +130,10 @@ Technical choices
 What's next
 --------------
 While the project scale up, Some points should be considered: 
-- Parent classes for common classes like ViewModels and Use Cases.
+- Parent classes should be added for common used classes like ViewModels and Use Cases.
 - Analytics and tracking system should be implemented to provide insight on app usage and user engagement.
 - Caching mechanism should be added to reduce network calls and improve the performance.
-- Pagination.
+- Pagination should be handled from backend and client side.
 
 
 Other Projects

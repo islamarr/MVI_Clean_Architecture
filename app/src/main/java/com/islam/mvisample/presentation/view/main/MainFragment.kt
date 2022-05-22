@@ -54,7 +54,7 @@ class MainFragment : BaseFragment<MainFragmentBinding>() {
     }
 
     private fun startObserver() {
-        lifecycleScope.launch {
+        lifecycleScope.launchWhenStarted {
             viewModel.state.collect {
                 handleViewState(it)
             }
