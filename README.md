@@ -22,16 +22,21 @@ The Business Details
   * When the user taps on one of the thumbnails, a second screen load to show the larger photo in the middle of the screen.
 - Image Urls should be edited by omitting the proxy part “m.mobile.de/yams-proxy/”, prepending “https://” 
   and appending “?rule=mo-640.jpg” for normal images or “?rule=mo-1600.jpg” for larger one.
-  
+
+
+Demo
+--------------
+
+[demo][7]
+
 
 Architecture pattern Used
 --------------
 
 [MVI][1]
 
-[Why I prefer MVI?][5]
-
 ![architecture pattern][2]
+
 
 Testing Coverage
 --------------
@@ -74,6 +79,7 @@ Technical choices
 - Easy to debug, As we know the state of the object when the error occurred.
 - It's more decoupled as each component fulfills its own responsibility.
 - Testing the app also will be easier as we can map the business logic for each state.
+- [Read more][5]
 
 **RecyclerView vs listview**
 
@@ -136,6 +142,7 @@ Other Projects
 [4]: https://developer.android.com/training/testing/
 [5]: http://hannesdorfmann.com/android/mosby3-mvi-1/
 [6]: https://github.com/islamarr/MVI_Clean_Architecture/blob/master/app/src/main/res/drawable/unit_test_coverage.png
+[7]: https://github.com/islamarr/MVI_Clean_Architecture/blob/master/app/src/main/res/drawable/demo.gif
 [10]: https://developer.android.com/jetpack/arch/
 [11]: https://developer.android.com/topic/libraries/data-binding/
 [12]: https://developer.android.com/topic/libraries/architecture/lifecycle
