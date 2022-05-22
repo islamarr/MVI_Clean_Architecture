@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.constraintlayout.helper.widget.MotionPlaceholder
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -18,7 +19,7 @@ import com.islam.mvisample.domain.usecases.ImageURLQUERY
 import com.islam.mvisample.presentation.view.main.MainFragmentDirections
 
 
-class CarsAdapter : ListAdapter<CarImage, CarsAdapter.ViewHolder>(CarsDiffCallback()) {
+class CarsAdapter(private val initialImagesDimens: Int) : ListAdapter<CarImage, CarsAdapter.ViewHolder>(CarsDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -61,9 +62,10 @@ class CarsAdapter : ListAdapter<CarImage, CarsAdapter.ViewHolder>(CarsDiffCallba
     }
 
     private fun loadImage(context: Context, url: String?, logo: ImageView) {
-        Glide.with(context).load(Uri.parse(url))
+        Glide.with(context).load(url)
             .placeholder(R.drawable.loading_img)
             .error(R.drawable.placeholder_img)
+            .override(initialImagesDimens, initialImagesDimens)
             .thumbnail(IMAGE_SIZE_MULTIPLIER)
             .into(logo)
     }

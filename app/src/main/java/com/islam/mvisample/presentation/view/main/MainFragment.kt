@@ -43,8 +43,9 @@ class MainFragment : BaseFragment<MainFragmentBinding>() {
     }
 
     private fun initRecyclerView() {
+        val initialImagesDimens = resources.getInteger(R.integer.initial_images_dimens)
         binding.list.apply {
-            carsAdapter = CarsAdapter()
+            carsAdapter = CarsAdapter(initialImagesDimens)
             val columnsCount = resources.getInteger(R.integer.columns_count)
             layoutManager = GridLayoutManager(requireActivity(), columnsCount)
             adapter = carsAdapter

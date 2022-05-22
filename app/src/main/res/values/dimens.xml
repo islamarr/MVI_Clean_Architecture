@@ -26,5 +26,6 @@
 
     <!-- Grid columns count -->
     <integer name="columns_count">2</integer>
+    <integer name="initial_images_dimens">500</integer>
 
 </resources>
