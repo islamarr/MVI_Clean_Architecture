@@ -27,7 +27,7 @@ The Business Details
 Demo
 --------------
 
-[demo][7]
+![demo](./app/assets/demo.gif)
 
 
 Architecture pattern Used
