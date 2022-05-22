@@ -5,6 +5,8 @@ import com.islam.mvisample.data.remote.data_source.GetCarImagesRemoteDataSource
 import com.islam.mvisample.domain.entites.CarResponse
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.runBlocking
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.ResponseBody.Companion.toResponseBody
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -35,4 +37,20 @@ class GetCarImagesRepositoryImplTest {
 
         assertEquals(networkResponse, repository.getCars(params))
     }
+
+    @Test
+    fun `when get cars return error response`() = runBlocking {
+        val params = "111"
+        val response = Response.error<CarResponse>(
+            400,
+            "{\"key\":[\"something\"]}"
+                .toResponseBody("application/json".toMediaTypeOrNull())
+        )
+        val networkResponse = NetworkResponse.Success(response)
+
+        whenever(remoteDataSource.getCars(params)).thenReturn(networkResponse)
+
+        assertEquals(networkResponse, remoteDataSource.getCars(params))
+    }
+
 }

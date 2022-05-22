@@ -82,7 +82,7 @@ class GetCarImageUrlUseCaseTest {
         whenever(repository.getCars(id)).thenReturn(response)
 
         val actual = useCase.execute(id)
-        val expected = MainResults.ERROR(response.reason ?: "", response.httpCode)
+        val expected = MainResults.Error(response.reason ?: "", response.httpCode)
 
         assertEquals(actual, expected)
     }
@@ -105,7 +105,6 @@ class GetCarImageUrlUseCaseTest {
     fun `when get null response return UnExpectedError result`() = runBlocking {
 
         val id = "111"
-
         whenever(repository.getCars(id)).thenReturn(NetworkResponse.Success(Response.success(null)))
 
         val actual = useCase.execute(id)

@@ -75,7 +75,7 @@ class MainViewModelTest {
     @Test
     fun `when reduce error result return ShowErrorMessage state`() = runBlocking {
 
-        val actual = mainViewModel.reduce(MainResults.ERROR("reason", 501))
+        val actual = mainViewModel.reduce(MainResults.Error("reason", 501))
         val expected = MainStates.ShowErrorMessage("reason", 501)
 
         assertEquals(actual, expected)
@@ -101,10 +101,10 @@ class MainViewModelTest {
     }
 
     @Test
-    fun `when reduce UnExpectedError result return Idle state`() = runBlocking {
+    fun `when reduce UnExpectedError result return ShowErrorMessage state`() = runBlocking {
 
         val actual = mainViewModel.reduce(MainResults.UnExpectedError)
-        val expected = MainStates.Idle
+        val expected = MainStates.ShowErrorMessage()
 
         assertEquals(actual, expected)
     }

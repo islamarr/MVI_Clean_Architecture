@@ -10,7 +10,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(private val getCarImage: GetCarImageUrlUseCase) :
     ViewModel() {
-    private val _state = MutableStateFlow<MainStates>(MainStates.Idle)
+    private val _state = MutableStateFlow<MainStates>(MainStates.InitialState)
     val state: StateFlow<MainStates>
         get() = _state.asStateFlow()
 
@@ -28,8 +28,8 @@ class MainViewModel @Inject constructor(private val getCarImage: GetCarImageUrlU
 
     fun reduce(result: MainResults): MainStates =
         when (result) {
-            is MainResults.UnExpectedError -> MainStates.Idle
-            is MainResults.ERROR -> MainStates.ShowErrorMessage(result.reason, result.errorCode)
+            is MainResults.UnExpectedError -> MainStates.ShowErrorMessage()
+            is MainResults.Error -> MainStates.ShowErrorMessage(result.reason, result.errorCode)
             is MainResults.CarImageURLListLoaded -> MainStates.CarImagesLoaded(result.carImageURLList)
             is MainResults.CarImageURLEmptyList -> MainStates.EmptyCarList
         }

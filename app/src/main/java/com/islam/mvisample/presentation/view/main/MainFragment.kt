@@ -79,7 +79,7 @@ class MainFragment : BaseFragment<MainFragmentBinding>() {
 
     private fun handleViewState(it: MainStates) {
         when (it) {
-            is MainStates.Idle -> loadCarImages()
+            is MainStates.InitialState -> loadCarImages()
             is MainStates.Loading -> binding.loadingProgressBar.visible()
             is MainStates.CarImagesLoaded -> {
                 showEmptyList(false)

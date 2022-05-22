@@ -21,7 +21,7 @@ class GetCarImageUrlUseCase @Inject constructor(private val getCarImagesReposito
             }
             is NetworkResponse.Failure -> {
                 response.reason?.let {
-                    MainResults.ERROR(response.reason, response.httpCode)
+                    MainResults.Error(response.reason, response.httpCode)
                 } ?: MainResults.UnExpectedError
             }
         }
