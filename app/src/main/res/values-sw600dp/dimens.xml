@@ -1,26 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- font sizes -->
-    <dimen name="_24sp">30sp</dimen>
-    <dimen name="_20sp">26sp</dimen>
     <dimen name="_18sp">22sp</dimen>
     <dimen name="_16sp">20sp</dimen>
-    <dimen name="_14sp">18sp</dimen>
-    <dimen name="_12sp">16sp</dimen>
 
     <!-- typical spacing between two views -->
-    <dimen name="spacing_huge">60dp</dimen>
     <dimen name="spacing_large">40dp</dimen>
     <dimen name="spacing_normal">24dp</dimen>
     <dimen name="spacing_small">18dp</dimen>
-    <dimen name="spacing_mini">10dp</dimen>
-
-    <!-- typical padding width -->
-    <dimen name="padding_small">20dp</dimen>
 
     <!-- typical sizes of views -->
-    <dimen name="height_tall">115dp</dimen>
-    <dimen name="height_normal">75dp</dimen>
     <dimen name="height_small">60dp</dimen>
     <dimen name="width_normal">150dp</dimen>
 

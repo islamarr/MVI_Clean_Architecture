@@ -63,14 +63,6 @@ class MainViewModelTest {
     }
 
     @Test
-    fun `when start viewModel return d`() = runBlocking {
-        val expected = MainStates.Loading
-        val actual = mainViewModel.state.collect {  }
-
-        assertEquals(expected, actual)
-    }
-
-    @Test
     fun `when dispatch viewModel return CarImagesLoaded state`() = runBlocking {
         val id = "111"
         val action = MainActions.LoadImages(id)

@@ -14,6 +14,8 @@ About this project
 
 🛠 Standard Coding Style.
 
+🛠 Support Tablet screens.
+
 
 The Business Details
 --------------
