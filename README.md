@@ -142,7 +142,7 @@ Other Projects
 [4]: https://developer.android.com/training/testing/
 [5]: http://hannesdorfmann.com/android/mosby3-mvi-1/
 [6]: https://github.com/islamarr/MVI_Clean_Architecture/blob/master/app/src/main/res/drawable/unit_test_coverage.png
-[7]: https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif
+[7]: https://github.com/islamarr/MVI_Clean_Architecture/blob/master/app/src/main/res/drawable/demo.gif
 [10]: https://developer.android.com/jetpack/arch/
 [11]: https://developer.android.com/topic/libraries/data-binding/
 [12]: https://developer.android.com/topic/libraries/architecture/lifecycle
