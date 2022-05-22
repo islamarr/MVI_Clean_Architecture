@@ -7,6 +7,7 @@ import com.islam.mvisample.domain.usecases.GetCarImageUrlUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
@@ -51,6 +52,22 @@ class MainViewModelTest {
         verifyNoMoreInteractions(mainUseCase)
 
         assertEquals(actual, expected)
+    }
+
+    @Test
+    fun `when start viewModel return InitialState`() = runBlocking {
+        val expected = MainStates.InitialState
+        val actual = mainViewModel.state.first()
+
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `when start viewModel return d`() = runBlocking {
+        val expected = MainStates.Loading
+        val actual = mainViewModel.state.collect {  }
+
+        assertEquals(expected, actual)
     }
 
     @Test
