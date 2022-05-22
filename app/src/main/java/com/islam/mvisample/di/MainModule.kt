@@ -1,6 +1,6 @@
 package com.islam.mvisample.di
 
-import com.islam.mvisample.data.remote.repositories.GetCarImagesRepositoryImpl
+import com.islam.mvisample.data.repositories.GetCarImagesRepositoryImpl
 import com.islam.mvisample.domain.repositories.GetCarImagesRepository
 import dagger.Binds
 import dagger.Module

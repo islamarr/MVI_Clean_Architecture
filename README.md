@@ -22,6 +22,7 @@ The Business Details
   * When the user taps on one of the thumbnails, a second screen load to show the larger photo in the middle of the screen.
 - Image Urls should be edited by omitting the proxy part “m.mobile.de/yams-proxy/”, prepending “https://” 
   and appending “?rule=mo-640.jpg” for normal images or “?rule=mo-1600.jpg” for larger one.
+- Display a grid list with 2 columns in the portrait mode and 3 columns in the landscape mode.
 
 
 Demo
@@ -53,7 +54,7 @@ Libraries & Tools Used
 * [Architecture][10] - A collection of libraries that help you design robust, testable, and
   maintainable apps. Start with classes for managing your UI component lifecycle and handling data
   persistence.
-    * [Data Binding][11] - Declaratively bind observable data to UI elements.
+    * [View Binding][11] - To more easily write code that interacts with views. 
     * [Lifecycles][12] - Create a UI that automatically responds to lifecycle events.
     * [Navigation][14] - Handle everything needed for in-app navigation.
     * [ViewModel][17] - Store UI-related data that isn't destroyed on app rotations. Easily schedule
@@ -112,6 +113,13 @@ Technical choices
 - Retrofit has a well-designed structure.
 - Suspend function support.
 
+**Moshi vs GSON**
+
+- Moshi is a Kotlin-Friendly converter. 
+- Moshi has better and more human-readable serialization failed messages.
+- Moshi has Code-gen adapter for Kotlin, This is great! With help of annotations, you make the Serialization/Deserialization much faster and bypass the old slow reflection method that Gson uses!
+
+
 **Glide**
 
 - Glide very effective for almost any case where you need to fetch, resize, cache and display a remote image.
@@ -120,10 +128,11 @@ Technical choices
 
 What's next
 --------------
-- Pagination
-- Modularization
-- Add data source layer
-- Add parent class for common classes like ViewModels and use cases 
+While the project scale up, Some points should be considered: 
+- Parent classes for common classes like ViewModels and Use Cases.
+- Analytics and tracking system should be implemented to provide insight on app usage and user engagement.
+- Caching mechanism should be added to reduce network calls.
+- Pagination.
 
 
 Other Projects

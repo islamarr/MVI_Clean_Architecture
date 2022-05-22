@@ -1,8 +1,8 @@
 package com.islam.mvisample.domain.entites
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 data class CarResponse(
-    @SerializedName("images")
+    @field:Json(name = "images")
     val carImages: List<CarImage>,
 )

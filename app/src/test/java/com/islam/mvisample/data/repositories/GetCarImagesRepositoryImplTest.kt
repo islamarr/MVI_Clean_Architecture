@@ -1,4 +1,4 @@
-package com.islam.mvisample.data.remote.repositories
+package com.islam.mvisample.data.repositories
 
 import com.islam.mvisample.data.remote.AppService
 import com.islam.mvisample.data.remote.NetworkResponse
