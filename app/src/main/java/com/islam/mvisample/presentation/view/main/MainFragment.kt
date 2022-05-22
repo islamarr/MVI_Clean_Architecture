@@ -10,11 +10,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.islam.mvisample.R
 import com.islam.mvisample.common.CAR_LIST_ID
+import com.islam.mvisample.common.COLUMNS_SPACE
 import com.islam.mvisample.common.gone
 import com.islam.mvisample.common.visible
 import com.islam.mvisample.databinding.MainFragmentBinding
 import com.islam.mvisample.presentation.view.base.BaseFragment
 import com.islam.mvisample.presentation.view.main.adapter.CarsAdapter
+import com.islam.mvisample.presentation.view.main.adapter.GridSpacingItemDecoration
 import com.islam.mvisample.presentation.viewmodel.main.MainActions
 import com.islam.mvisample.presentation.viewmodel.main.MainStates
 import com.islam.mvisample.presentation.viewmodel.main.MainViewModel
@@ -46,6 +48,7 @@ class MainFragment : BaseFragment<MainFragmentBinding>() {
             val columnsCount = resources.getInteger(R.integer.columns_count)
             layoutManager = GridLayoutManager(requireActivity(), columnsCount)
             adapter = carsAdapter
+            addItemDecoration(GridSpacingItemDecoration(columnsCount, COLUMNS_SPACE))
         }
     }
 
