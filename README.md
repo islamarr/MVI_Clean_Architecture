@@ -66,11 +66,12 @@ Libraries & Tools Used
     * [Hilt][17]: For [dependency injection][18]
     * [Kotlin Coroutines][19] For managing background threads with simplified code and reducing needs for callbacks.
     * [Kotlin Flows][20] - A stream of data that can be computed asynchronously.
-    * [Glide][21] For image loading.
+    * [Glide][21] - For image loading.
 
 * Other tools/plugins   
-    * [Google material design][30] to build high-quality digital experiences for Android.
-    * [SonarLint plugin][31] - Static Code Analysis that identifies and helps you fix quality and security issues as you code.
+    * [Obfuscation, Code shrinking][30] - Obfuscation is to reduce your app size by shortening the names of the app’s classes, methods, and fields. Shrinking to make the app as small as possible.
+    * [Google material design][31] to build high-quality digital experiences for Android.
+    * [SonarLint plugin][32] - Static Code Analysis that identifies and helps you fix quality and security issues as you code.
 
 Technical choices
 --------------
@@ -167,8 +168,9 @@ Other Projects
 [20]: https://developer.android.com/kotlin/flow
 [21]: https://bumptech.github.io/glide/
 
-[30]: https://m3.material.io/
-[31]: https://www.sonarlint.org/
+[30]: https://developer.android.com/studio/build/shrink-code#obfuscate
+[31]: https://m3.material.io/
+[32]: https://www.sonarlint.org/
 
 [40]: http://hannesdorfmann.com/android/mosby3-mvi-1/
 
