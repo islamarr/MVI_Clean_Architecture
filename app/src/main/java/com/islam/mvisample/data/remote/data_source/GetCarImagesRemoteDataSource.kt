@@ -5,6 +5,6 @@ import com.islam.mvisample.data.remote.NetworkRemoteServiceCall
 import com.islam.mvisample.domain.entites.CarResponse
 import retrofit2.Response
 
-interface GetCarImagesDataSource : NetworkRemoteServiceCall {
+interface GetCarImagesRemoteDataSource : NetworkRemoteServiceCall {
     suspend fun getCars(id: String): NetworkResponse<Response<CarResponse>>
 }

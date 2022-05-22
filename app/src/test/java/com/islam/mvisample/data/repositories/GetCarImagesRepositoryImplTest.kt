@@ -1,7 +1,7 @@
 package com.islam.mvisample.data.repositories
 
 import com.islam.mvisample.data.remote.NetworkResponse
-import com.islam.mvisample.data.remote.data_source.GetCarImagesDataSource
+import com.islam.mvisample.data.remote.data_source.GetCarImagesRemoteDataSource
 import com.islam.mvisample.domain.entites.CarResponse
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.runBlocking
@@ -17,12 +17,12 @@ class GetCarImagesRepositoryImplTest {
     private lateinit var repository: GetCarImagesRepositoryImpl
 
     @Mock
-    private lateinit var dataSource: GetCarImagesDataSource
+    private lateinit var remoteDataSource: GetCarImagesRemoteDataSource
 
     @Before
     fun setUp() {
         MockitoAnnotations.openMocks(this)
-        repository = GetCarImagesRepositoryImpl(dataSource)
+        repository = GetCarImagesRepositoryImpl(remoteDataSource)
     }
 
     @Test
@@ -31,7 +31,7 @@ class GetCarImagesRepositoryImplTest {
         val response = Response.success(CarResponse(listOf()))
         val networkResponse = NetworkResponse.Success(response)
 
-        whenever(dataSource.getCars(params)).thenReturn(networkResponse)
+        whenever(remoteDataSource.getCars(params)).thenReturn(networkResponse)
 
         assertEquals(networkResponse, repository.getCars(params))
     }

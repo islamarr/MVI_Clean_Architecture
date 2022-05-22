@@ -1,6 +1,6 @@
 # MVI_Clean_Architecture_Sample
 
-![GitHub followers][40]     ![GitHub Repo stars][41]     ![GitHub forks][42]
+![GitHub followers][60]     ![GitHub Repo stars][61]     ![GitHub forks][62]
 
 About this project
 --------------
@@ -28,7 +28,7 @@ The Business Details
 Demo
 --------------
 
-![demo][7]
+![demo][0]
 
 
 Architecture pattern Used
@@ -42,32 +42,33 @@ Architecture pattern Used
 Testing Coverage
 --------------
 
-![Testing][6]
+![Testing][3]
 
 
 Libraries & Tools Used
 --------------
 
-* [Foundation][0] - Components for core system capabilities, Kotlin extensions and support for
+* [Foundation][4] - Components for core system capabilities, Kotlin extensions and support for
   multidex and unit testing.
-* [Test][4] - An Android testing framework for unit and runtime UI tests.
+* [Test][5] - An Android testing framework for unit and runtime UI tests.
 * [Architecture][10] - A collection of libraries that help you design robust, testable, and
   maintainable apps. Start with classes for managing your UI component lifecycle and handling data
   persistence.
     * [View Binding][11] - To more easily write code that interacts with views. 
     * [Lifecycles][12] - Create a UI that automatically responds to lifecycle events.
-    * [Navigation][14] - Handle everything needed for in-app navigation.
-    * [ViewModel][17] - Store UI-related data that isn't destroyed on app rotations. Easily schedule
+    * [Navigation][13] - Handle everything needed for in-app navigation.
+    * [ViewModel][14] - Store UI-related data that isn't destroyed on app rotations. Easily schedule
       asynchronous tasks for optimal execution.
-    * [Repository][3] - A Module that handle data operations, You can consider repositories to be mediators between different data sources.
-    * [Kotlin Flows][21] - A stream of data that can be computed asynchronously.
-    * [Retrofit][20] - A simple library that is used for network transaction.
-    * [Glide][90] For image loading.
-    * [Hilt][92]: For [dependency injection][93]
-    * [Kotlin Coroutines][91] For managing background threads with simplified code and reducing needs for callbacks.
+    * [Repository][15] - A Module that handle data operations, You can consider repositories to be mediators between different data sources.
+    * [Retrofit][16] - A simple library that is used for network transaction.
+    * [Hilt][17]: For [dependency injection][18]
+    * [Kotlin Coroutines][19] For managing background threads with simplified code and reducing needs for callbacks.
+    * [Kotlin Flows][20] - A stream of data that can be computed asynchronously.
+    * [Glide][21] For image loading.
+
 * Other tools/plugins   
-    * [Google material design][94] to build high-quality digital experiences for Android.
-    * [SonarLint plugin][50] - Static Code Analysis that identifies and helps you fix quality and security issues as you code.
+    * [Google material design][30] to build high-quality digital experiences for Android.
+    * [SonarLint plugin][31] - Static Code Analysis that identifies and helps you fix quality and security issues as you code.
 
 Technical choices
 --------------
@@ -80,7 +81,7 @@ Technical choices
 - Easy to debug, As we know the state of the object when the error occurred.
 - It's more decoupled as each component fulfills its own responsibility.
 - Testing the app also will be easier as we can map the business logic for each state.
-- [Read more][5]
+- [Read more][40]
 
 **RecyclerView vs listview**
 
@@ -131,44 +132,49 @@ What's next
 While the project scale up, Some points should be considered: 
 - Parent classes for common classes like ViewModels and Use Cases.
 - Analytics and tracking system should be implemented to provide insight on app usage and user engagement.
-- Caching mechanism should be added to reduce network calls.
+- Caching mechanism should be added to reduce network calls and improve the performance.
 - Pagination.
 
 
 Other Projects
 --------------
 
-* [ShutterStock image list][30] - MVVM Sample.
-* [Recorder][31] - Another MVVM Sample.
-* [Prayer Now][32] - One of the projects I developed has 15+ Million downloads.
-* [Mn Ahyaha][33] - Side project I developed from scratch.
+* [ShutterStock image list][50] - MVVM Sample.
+* [Recorder][51] - Another MVVM Sample.
+* [Prayer Now][52] - One of the projects I developed has 15+ Million downloads.
+* [Mn Ahyaha][53] - Side project I developed from scratch.
 
 
-[0]: https://developer.android.com/jetpack/components
+[0]: https://github.com/islamarr/MVI_Clean_Architecture/blob/master/app/src/main/res/drawable/demo.gif
 [1]: https://cycle.js.org/model-view-intent.html
 [2]: https://github.com/islamarr/MVI_Clean_Architecture/blob/master/app/src/main/res/drawable/mvi_diagram.png
-[3]: https://developer.android.com/jetpack/guide#fetch-data
-[4]: https://developer.android.com/training/testing/
-[5]: http://hannesdorfmann.com/android/mosby3-mvi-1/
-[6]: https://github.com/islamarr/MVI_Clean_Architecture/blob/master/app/src/main/res/drawable/unit_test_coverage.png
-[7]: https://github.com/islamarr/MVI_Clean_Architecture/blob/master/app/src/main/res/drawable/demo.gif
+[3]: https://github.com/islamarr/MVI_Clean_Architecture/blob/master/app/src/main/res/drawable/unit_test_coverage.png
+[4]: https://developer.android.com/jetpack/components
+[5]: https://developer.android.com/training/testing/
+
 [10]: https://developer.android.com/jetpack/arch/
 [11]: https://developer.android.com/topic/libraries/data-binding/
 [12]: https://developer.android.com/topic/libraries/architecture/lifecycle
-[14]: https://developer.android.com/topic/libraries/architecture/navigation/
-[17]: https://developer.android.com/topic/libraries/architecture/viewmodel
-[20]: https://square.github.io/retrofit
-[21]: https://developer.android.com/kotlin/flow
-[30]: https://github.com/islamarr/shutterstock_image_list
-[31]: https://github.com/islamarr/recorder
-[32]: https://play.google.com/store/apps/details?id=com.AppRocks.now.prayer
-[33]: https://play.google.com/store/apps/details?id=com.Ihsan.Ahyaha
-[40]: https://img.shields.io/github/followers/islamarr?style=social
-[41]: https://img.shields.io/github/stars/islamarr/MVI_Clean_Architecture?style=social
-[42]: https://img.shields.io/github/forks/islamarr/MVI_Clean_Architecture?style=social
-[50]: https://www.sonarlint.org/
-[90]: https://bumptech.github.io/glide/
-[91]: https://kotlinlang.org/docs/reference/coroutines-overview.html
-[92]: https://developer.android.com/training/dependency-injection/hilt-android
-[93]: https://developer.android.com/training/dependency-injection
-[94]: https://m3.material.io/
+[13]: https://developer.android.com/topic/libraries/architecture/navigation/
+[14]: https://developer.android.com/topic/libraries/architecture/viewmodel
+[15]: https://developer.android.com/topic/architecture/data-layer#create_the_repository
+[16]: https://square.github.io/retrofit
+[17]: https://developer.android.com/training/dependency-injection/hilt-android
+[18]: https://developer.android.com/training/dependency-injection
+[19]: https://kotlinlang.org/docs/reference/coroutines-overview.html
+[20]: https://developer.android.com/kotlin/flow
+[21]: https://bumptech.github.io/glide/
+
+[30]: https://m3.material.io/
+[31]: https://www.sonarlint.org/
+
+[40]: http://hannesdorfmann.com/android/mosby3-mvi-1/
+
+[50]: https://github.com/islamarr/shutterstock_image_list
+[51]: https://github.com/islamarr/recorder
+[52]: https://play.google.com/store/apps/details?id=com.AppRocks.now.prayer
+[53]: https://play.google.com/store/apps/details?id=com.Ihsan.Ahyaha
+
+[60]: https://img.shields.io/github/followers/islamarr?style=social
+[61]: https://img.shields.io/github/stars/islamarr/MVI_Clean_Architecture?style=social
+[62]: https://img.shields.io/github/forks/islamarr/MVI_Clean_Architecture?style=social

@@ -12,9 +12,9 @@ import org.mockito.MockitoAnnotations
 import org.mockito.kotlin.whenever
 import retrofit2.Response
 
-class GetCarImagesDataSourceImplTest {
+class GetCarImagesRemoteDataSourceImplTest {
 
-    private lateinit var dataSource: GetCarImagesDataSourceImpl
+    private lateinit var dataSource: GetCarImagesRemoteDataSourceImpl
 
     @Mock
     private lateinit var apiService: ApiService
@@ -22,7 +22,7 @@ class GetCarImagesDataSourceImplTest {
     @Before
     fun setUp() {
         MockitoAnnotations.openMocks(this)
-        dataSource = GetCarImagesDataSourceImpl(apiService)
+        dataSource = GetCarImagesRemoteDataSourceImpl(apiService)
     }
 
     @Test
