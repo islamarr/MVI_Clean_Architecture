@@ -17,6 +17,6 @@ abstract class MainModule {
     abstract fun bindGetCarImagesRepository(repository: GetCarImagesRepositoryImpl): GetCarImagesRepository
 
     @Binds
-    abstract fun bindGetCarImagesDataSource(dataSource: GetCarImagesRemoteDataSourceImpl): GetCarImagesRemoteDataSource
+    abstract fun bindGetCarImagesRemoteDataSource(dataSource: GetCarImagesRemoteDataSourceImpl): GetCarImagesRemoteDataSource
 
 }

@@ -153,7 +153,7 @@ Other Projects
 [5]: https://developer.android.com/training/testing/
 
 [10]: https://developer.android.com/jetpack/arch/
-[11]: https://developer.android.com/topic/libraries/data-binding/
+[11]: https://developer.android.com/topic/libraries/view-binding
 [12]: https://developer.android.com/topic/libraries/architecture/lifecycle
 [13]: https://developer.android.com/topic/libraries/architecture/navigation/
 [14]: https://developer.android.com/topic/libraries/architecture/viewmodel
@@ -161,7 +161,7 @@ Other Projects
 [16]: https://square.github.io/retrofit
 [17]: https://developer.android.com/training/dependency-injection/hilt-android
 [18]: https://developer.android.com/training/dependency-injection
-[19]: https://kotlinlang.org/docs/reference/coroutines-overview.html
+[19]: https://developer.android.com/kotlin/coroutines
 [20]: https://developer.android.com/kotlin/flow
 [21]: https://bumptech.github.io/glide/
 
