@@ -1,6 +1,5 @@
-package com.islam.mvisample.data.repositories
+package com.islam.mvisample.data.remote
 
-import com.islam.mvisample.data.remote.NetworkResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
@@ -8,7 +7,7 @@ import retrofit2.HttpException
 /**
  * To handle Http Exceptions Like no internet connection and Time out
  */
-interface BaseRepository {
+interface NetworkRemoteServiceCall {
 
     suspend fun <T> safeApiCall(
         apiCall: suspend () -> T

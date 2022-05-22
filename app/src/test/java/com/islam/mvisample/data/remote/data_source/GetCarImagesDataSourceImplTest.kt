@@ -1,9 +1,9 @@
-package com.islam.mvisample.data.repositories
+package com.islam.mvisample.data.remote.data_source
 
 import com.islam.mvisample.data.remote.NetworkResponse
-import com.islam.mvisample.data.remote.data_source.GetCarImagesDataSource
+import com.islam.mvisample.data.remote.api.ApiService
 import com.islam.mvisample.domain.entites.CarResponse
-import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
@@ -12,17 +12,17 @@ import org.mockito.MockitoAnnotations
 import org.mockito.kotlin.whenever
 import retrofit2.Response
 
-class GetCarImagesRepositoryImplTest {
+class GetCarImagesDataSourceImplTest {
 
-    private lateinit var repository: GetCarImagesRepositoryImpl
+    private lateinit var dataSource: GetCarImagesDataSourceImpl
 
     @Mock
-    private lateinit var dataSource: GetCarImagesDataSource
+    private lateinit var apiService: ApiService
 
     @Before
     fun setUp() {
         MockitoAnnotations.openMocks(this)
-        repository = GetCarImagesRepositoryImpl(dataSource)
+        dataSource = GetCarImagesDataSourceImpl(apiService)
     }
 
     @Test
@@ -31,8 +31,8 @@ class GetCarImagesRepositoryImplTest {
         val response = Response.success(CarResponse(listOf()))
         val networkResponse = NetworkResponse.Success(response)
 
-        whenever(dataSource.getCars(params)).thenReturn(networkResponse)
+        whenever(apiService.getCars(params)).thenReturn(response)
 
-        assertEquals(networkResponse, repository.getCars(params))
+        TestCase.assertEquals(networkResponse, dataSource.getCars(params))
     }
 }

@@ -2,7 +2,7 @@ package com.islam.mvisample.di
 
 import com.islam.mvisample.BuildConfig
 import com.islam.mvisample.common.TIME_OUT_IN_SECONDS
-import com.islam.mvisample.data.remote.AppService
+import com.islam.mvisample.data.remote.api.ApiService
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Module
 import dagger.Provides
@@ -17,7 +17,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule {
+object APIModule {
 
     @Singleton
     @Provides
@@ -31,7 +31,7 @@ object AppModule {
     @Provides
     fun provideAPI(
         httpLoggingInterceptor: HttpLoggingInterceptor
-    ): AppService {
+    ): ApiService {
 
         val okkHttpclient = OkHttpClient.Builder()
             .readTimeout(TIME_OUT_IN_SECONDS, TimeUnit.SECONDS)
@@ -47,7 +47,7 @@ object AppModule {
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
 
-        return retrofit.create(AppService::class.java)
+        return retrofit.create(ApiService::class.java)
 
     }
 

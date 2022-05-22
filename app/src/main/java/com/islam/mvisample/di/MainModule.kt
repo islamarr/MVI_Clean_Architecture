@@ -1,5 +1,7 @@
 package com.islam.mvisample.di
 
+import com.islam.mvisample.data.remote.data_source.GetCarImagesDataSource
+import com.islam.mvisample.data.remote.data_source.GetCarImagesDataSourceImpl
 import com.islam.mvisample.data.repositories.GetCarImagesRepositoryImpl
 import com.islam.mvisample.domain.repositories.GetCarImagesRepository
 import dagger.Binds
@@ -13,5 +15,8 @@ abstract class MainModule {
 
     @Binds
     abstract fun bindGetCarImagesRepository(repository: GetCarImagesRepositoryImpl): GetCarImagesRepository
+
+    @Binds
+    abstract fun bindGetCarImagesDataSource(dataSource: GetCarImagesDataSourceImpl): GetCarImagesDataSource
 
 }
