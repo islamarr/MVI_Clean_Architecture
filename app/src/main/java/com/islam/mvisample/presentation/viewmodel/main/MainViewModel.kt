@@ -32,11 +32,15 @@ class MainViewModel @Inject constructor(private val getCarImage: GetCarImageUrlU
             is MainResults.Error -> MainStates.ShowErrorMessage(result.reason, result.errorCode)
             is MainResults.CarImageURLListLoaded -> MainStates.CarImagesLoaded(result.carImageURLList)
             is MainResults.CarImageURLEmptyList -> MainStates.EmptyCarList
+            is MainResults.Loading -> MainStates.Loading
         }
 
     fun handle(actions: MainActions): Flow<MainResults> = flow {
         when (actions) {
-            is MainActions.LoadImages -> emit(getCarImage.execute(actions.id))
+            is MainActions.LoadImages -> {
+                emit(MainResults.Loading)
+                emit(getCarImage.execute(actions.id))
+            }
         }
     }
 

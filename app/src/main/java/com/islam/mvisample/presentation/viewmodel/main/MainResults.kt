@@ -3,6 +3,7 @@ package com.islam.mvisample.presentation.viewmodel.main
 import com.islam.mvisample.domain.entites.CarImage
 
 sealed class MainResults {
+    object Loading : MainResults()
     object UnExpectedError : MainResults()
     object CarImageURLEmptyList : MainResults()
     data class CarImageURLListLoaded(val carImageURLList: List<CarImage>) : MainResults()
