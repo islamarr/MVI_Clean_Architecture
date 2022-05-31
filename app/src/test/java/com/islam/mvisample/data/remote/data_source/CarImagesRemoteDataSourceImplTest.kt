@@ -1,7 +1,7 @@
-package com.islam.mvisample.data.repositories
+package com.islam.mvisample.data.remote.data_source
 
 import com.islam.mvisample.data.remote.NetworkResponse
-import com.islam.mvisample.data.remote.data_source.GetCarImagesRemoteDataSource
+import com.islam.mvisample.data.remote.api.ApiService
 import com.islam.mvisample.domain.entites.CarResponse
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.runBlocking
@@ -14,43 +14,43 @@ import org.mockito.MockitoAnnotations
 import org.mockito.kotlin.whenever
 import retrofit2.Response
 
-class GetCarImagesRepositoryImplTest {
+class CarImagesRemoteDataSourceImplTest {
 
-    private lateinit var repository: GetCarImagesRepositoryImpl
+    private lateinit var dataSource: CarImagesRemoteDataSourceImpl
 
     @Mock
-    private lateinit var remoteDataSource: GetCarImagesRemoteDataSource
+    private lateinit var apiService: ApiService
 
     @Before
     fun setUp() {
         MockitoAnnotations.openMocks(this)
-        repository = GetCarImagesRepositoryImpl(remoteDataSource)
+        dataSource = CarImagesRemoteDataSourceImpl(apiService)
     }
 
     @Test
-    fun `test get cars in success statue`() = runBlocking {
+    fun `when get cars return success response`() = runBlocking {
         val params = "111"
         val response = Response.success(CarResponse(listOf()))
         val networkResponse = NetworkResponse.Success(response)
 
-        whenever(remoteDataSource.getCars(params)).thenReturn(networkResponse)
+        whenever(apiService.getCars(params)).thenReturn(response)
 
-        assertEquals(networkResponse, repository.getCars(params))
+        assertEquals(networkResponse, dataSource.getCars(params))
     }
 
     @Test
     fun `when get cars return error response`() = runBlocking {
         val params = "111"
         val response = Response.error<CarResponse>(
-            400,
+            500,
             "{\"key\":[\"something\"]}"
                 .toResponseBody("application/json".toMediaTypeOrNull())
         )
         val networkResponse = NetworkResponse.Success(response)
 
-        whenever(remoteDataSource.getCars(params)).thenReturn(networkResponse)
+        whenever(apiService.getCars(params)).thenReturn(response)
 
-        assertEquals(networkResponse, remoteDataSource.getCars(params))
+        assertEquals(networkResponse, dataSource.getCars(params))
     }
 
 }

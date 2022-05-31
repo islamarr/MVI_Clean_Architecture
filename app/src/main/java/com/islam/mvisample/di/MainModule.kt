@@ -1,9 +1,9 @@
 package com.islam.mvisample.di
 
-import com.islam.mvisample.data.remote.data_source.GetCarImagesRemoteDataSource
-import com.islam.mvisample.data.remote.data_source.GetCarImagesRemoteDataSourceImpl
-import com.islam.mvisample.data.repositories.GetCarImagesRepositoryImpl
-import com.islam.mvisample.domain.repositories.GetCarImagesRepository
+import com.islam.mvisample.data.remote.data_source.CarImagesRemoteDataSource
+import com.islam.mvisample.data.remote.data_source.CarImagesRemoteDataSourceImpl
+import com.islam.mvisample.data.repositories.CarImagesRepositoryImpl
+import com.islam.mvisample.domain.repositories.CarImagesRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,9 +14,9 @@ import dagger.hilt.android.components.ViewModelComponent
 abstract class MainModule {
 
     @Binds
-    abstract fun bindGetCarImagesRepository(repository: GetCarImagesRepositoryImpl): GetCarImagesRepository
+    abstract fun bindGetCarImagesRepository(repository: CarImagesRepositoryImpl): CarImagesRepository
 
     @Binds
-    abstract fun bindGetCarImagesRemoteDataSource(dataSource: GetCarImagesRemoteDataSourceImpl): GetCarImagesRemoteDataSource
+    abstract fun bindGetCarImagesRemoteDataSource(dataSource: CarImagesRemoteDataSourceImpl): CarImagesRemoteDataSource
 
 }

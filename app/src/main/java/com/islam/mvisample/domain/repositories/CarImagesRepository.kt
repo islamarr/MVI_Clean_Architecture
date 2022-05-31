@@ -1,10 +1,9 @@
-package com.islam.mvisample.data.remote.data_source
+package com.islam.mvisample.domain.repositories
 
 import com.islam.mvisample.data.remote.NetworkResponse
-import com.islam.mvisample.data.remote.NetworkRemoteServiceCall
 import com.islam.mvisample.domain.entites.CarResponse
 import retrofit2.Response
 
-interface GetCarImagesRemoteDataSource : NetworkRemoteServiceCall {
+interface CarImagesRepository {
     suspend fun getCars(id: String): NetworkResponse<Response<CarResponse>>
 }

@@ -6,8 +6,8 @@ import com.islam.mvisample.domain.entites.CarResponse
 import retrofit2.Response
 import javax.inject.Inject
 
-class GetCarImagesRemoteDataSourceImpl @Inject constructor(private val apiService: ApiService) :
-    GetCarImagesRemoteDataSource {
+class CarImagesRemoteDataSourceImpl @Inject constructor(private val apiService: ApiService) :
+    CarImagesRemoteDataSource {
     override suspend fun getCars(id: String): NetworkResponse<Response<CarResponse>> {
         return safeApiCall {
             apiService.getCars(id)

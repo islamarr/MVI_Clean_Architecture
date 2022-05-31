@@ -3,7 +3,7 @@ package com.islam.mvisample.domain.usecases
 import com.islam.mvisample.data.remote.NetworkResponse
 import com.islam.mvisample.domain.entites.CarImage
 import com.islam.mvisample.domain.entites.CarResponse
-import com.islam.mvisample.domain.repositories.GetCarImagesRepository
+import com.islam.mvisample.domain.repositories.CarImagesRepository
 import com.islam.mvisample.presentation.viewmodel.main.MainResults
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
@@ -14,12 +14,12 @@ import org.mockito.MockitoAnnotations
 import org.mockito.kotlin.whenever
 import retrofit2.Response
 
-class GetCarImageUrlUseCaseTest {
+class CarImageUrlUseCaseTest {
 
     private lateinit var useCase: GetCarImageUrlUseCase
 
     @Mock
-    private lateinit var repository: GetCarImagesRepository
+    private lateinit var repository: CarImagesRepository
 
     @Before
     fun setUp() {
