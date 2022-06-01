@@ -27,28 +27,34 @@ object NetworkModule {
         return httpLoggingInterceptor
     }
 
-    @Singleton
     @Provides
-    fun provideAPI(
-        httpLoggingInterceptor: HttpLoggingInterceptor
-    ): ApiService {
-
-        val okkHttpclient = OkHttpClient.Builder()
+    @Singleton
+    fun provideHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+        return OkHttpClient.Builder()
             .readTimeout(TIME_OUT_IN_SECONDS, TimeUnit.SECONDS)
             .writeTimeout(TIME_OUT_IN_SECONDS, TimeUnit.SECONDS)
             .connectTimeout(TIME_OUT_IN_SECONDS, TimeUnit.SECONDS)
             .addInterceptor(httpLoggingInterceptor)
             .build()
+    }
 
-        val retrofit = Retrofit.Builder()
-            .client(okkHttpclient)
+    @Provides
+    @Singleton
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+        return Retrofit.Builder()
+            .client(okHttpClient)
             .baseUrl(BuildConfig.BASE_URL)
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
+    }
 
+    @Singleton
+    @Provides
+    fun provideAPI(
+        retrofit: Retrofit
+    ): ApiService {
         return retrofit.create(ApiService::class.java)
-
     }
 
 }
