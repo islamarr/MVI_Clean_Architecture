@@ -8,5 +8,5 @@ import retrofit2.http.Path
 interface ApiService {
 
     @GET("/svc/a/{id}")
-    suspend fun getCars(@Path("id") id: String): Response<CarResponse>
+    suspend fun getCars(@Path("id") id: String): Response<CarResponse> //TODO remove retrofit response
 }
