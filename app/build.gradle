@@ -9,7 +9,7 @@ plugins {
 
 android {
     compileSdk 31
-
+    namespace 'com.islam.mvisample'
     defaultConfig {
         applicationId "com.islam.mvisample"
         minSdk 21
@@ -43,6 +43,7 @@ android {
     }
     buildFeatures {
         viewBinding true
+        buildConfig true
     }
 }
 
